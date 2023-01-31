@@ -1,0 +1,13 @@
+
+$(".updated").html('<%= j select_tag(:subcategory,options_from_collection_for_select( @cat.subcategories.all , :id , :name , @subcat.nil? ? "" : @subcat.id) , {prompt: "Select Subcategory" , onchange: "$(\'#buga\').submit()"}) %>');
+
+
+<% if @subcat.nil? %>
+	$(".updated2").html('<%= j select_tag(:brand,options_from_collection_for_select( [] , :id , :name , @cat.nil? ? "" : @cat.id) , {prompt: "Select Brand" , onchange: "$(\'#buga\').submit()" }) %>');	
+<% end %>
+
+<% unless @subcat.nil?  %>
+	$(".updated2").html('<%= j select_tag(:brand,options_from_collection_for_select( @subcat.brands.all , :id , :name , @brand.nil? ? "" : @brand.id) , {prompt: "Select Brand" , onchange: "$(\'#buga\').submit()"}) %>');	
+<% end %>
+
+$(".updated3").html("<%= j render 'list' %>");

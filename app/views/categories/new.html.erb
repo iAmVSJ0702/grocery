@@ -1,0 +1,29 @@
+<h1>Category</h1>
+<h5><%= notice %></h5>
+<h4> <%= link_to "Admin Dashboard" , admin_index_path , method: "get" , class: "btn btn-success" %>
+<h3>1. Add new category </h3>
+<%= form_for(@newCat) do |f| %>
+	<div class= "field" >
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+		<%= f.submit :Create , class: "btn btn-success" %>
+	</div>
+<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Category Name</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @allCat.each do |cat| %>
+    <tr>
+      <td scope="row"><%= cat[:name] %></td>
+      <td> <%=link_to "Edit" , edit_category_path(cat.id) %> / <%= link_to "Destroy" , category_path(cat), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

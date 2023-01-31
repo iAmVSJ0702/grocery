@@ -1,0 +1,29 @@
+<h5><%= notice %></h5>
+<h4> <%= link_to "Admin Dashboard" , admin_index_path, method: "get" , class: "btn btn-success" %>
+<h3>Add new Subcategory for <%= @catname %> </h3>
+<%= form_for(@newSubCat) do |f| %>
+	<div class= "field" >
+    <%= f.hidden_field :category ,value: @catName[:id] %>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+		<%= f.submit :Create , class: "btn btn-success"  %>
+    <%= f.label :category_id %><br>      
+    <%=  collection_select(:subcategory, :category_id, Category.all, :id, :name , options ={:prompt => "Select Category"} ) %>
+	</div>
+<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Category Name</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @subCatAll.each do |subcat| %>
+    <tr>
+      <td scope="row"><%= subcat[:name] %></td>
+      <td> <%= link_to "Edit" , edit_subcategory_path(subcat.id) %> /<%= link_to "Destroy" , subcategory_path(subcat), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

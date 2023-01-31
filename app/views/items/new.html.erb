@@ -1,0 +1,44 @@
+<h4><%= notice %> </h4>
+<h4><%= alert %> </h4>
+<h4> <%= link_to "Admin Dashboard" , admin_index_path , method: "get" , class: "btn btn-success" %>
+<h3>Add new Item </h3>
+<%= form_tag items_path , { method: "post", id: "buga" , multipart: true }  do %>
+	<div class="field form-group row">
+		<%= label_tag :title , nil ,class: "col-sm-2 col-form-label"  %>
+		<div class="col-sm-6">
+			<%= text_field_tag :title , nil ,class: "form-control" %>
+		</div>
+	</div> 
+		<div class="field form-group row">
+		<%= label_tag :price , nil , class: "col-sm-2 col-form-label" %>
+		<div class="col-sm-6">
+			<%= text_field_tag :price, nil , class: "form-control" %>
+		</div>
+	</div> 
+	<div class="field form-group row">
+		<%= label_tag :description , nil , class: "col-sm-2 col-form-label" %>
+		<div class="col-sm-6">
+			<%= text_area_tag :description , nil , class: "form-control" %>
+		</div>
+	</div> 
+
+	<div class="field form-group row" >
+		<%= file_field_tag :avatar , class: "col-sm-6" %>
+	</div>
+	<div class=field>
+		<%= select_tag(:category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category" , class: "auto-update"} ) %>
+	</div>
+	<div class=field>
+		<%= select_tag(:subcategory , "" , {prompt: "Select subcategory", class: "sub-update"} ) %>
+	</div>
+	<div class=field>
+		<%= select_tag(:brand , "" , {prompt: "Select Brand", class: "brand"} ) %>
+	</div>
+	<div class="action form-group row">
+		<div class="col-sm-6">
+			<%= submit_tag("Create Item", class: "btn btn-primary") %>
+		</div>
+	</div>
+<% end %>
+<br>
+<br>

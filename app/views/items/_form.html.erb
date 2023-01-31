@@ -1,0 +1,4 @@
+<div>
+		<%= form.label :category, style: "display: block" %>
+		<%= form.select :category, options_from_collection_for_select( Category.all , :id , :name , @cat.nil? ? "" : @cat.id) , {prompt: 'Select Category'}, {class: "form-select form-select-lg", data: {controller: "category"}} %>
+	</div>

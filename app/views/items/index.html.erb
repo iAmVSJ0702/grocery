@@ -1,0 +1,31 @@
+<div class="row">
+	<div class="col-sm-3 sidebar">
+	<div data-controller="item">
+		<%= form_tag items_path , { method: "get", remote: true, id: "buga"} do %>
+		<p>Category:</p>
+		<p><%= select_tag( :category , options_from_collection_for_select( Category.all , :id , :name , @cat.nil? ? "" : @cat.id) , { prompt: "Select Category"} ) %></p>
+		<p>Sub-Category: </p>
+		<p class="updated"><%= select_tag(:subcategory , options_from_collection_for_select(Subcategory.all , :id , :name), {prompt: "Select Subcategory"}) %></p>
+		<p>Brand: </p>
+		<p class="updated2"> <%= select_tag(:brand , options_from_collection_for_select(Brand.all, :id , :name), {prompt: "Select brand", onchange: "$('#buga').submit()"}) %>  </p>
+		<% end %>
+	</div>
+
+		<ul class="nav nav-pills nav-stacked">
+			<% if logged_in?  %> 
+			<li> <%= link_to "My Account" , current_user , class: "nav-link" %> </li>
+			<li> <%= link_to "My cart" , carts_path , class: "nav-link" %> </li>
+			<li> <%= link_to "Admin Dashboard" , admin_index_path, method: "get" , class: "nav-link" if is_admin? %></li>
+			<% else %>
+			<li> <%= link_to "Login", new_session_path %></li>
+			<% end %>
+
+		</ul>
+	</div>
+
+	
+	<div class="updated3 col-sm-offset-3">
+		<h5><%= alert %> </h5>
+		<%= render 'list' %>
+	</div>
+</div>

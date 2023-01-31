@@ -1,0 +1,54 @@
+<h4 class="text-center"> <%= notice %> </h4>
+<h3 class="text-center"><%= is_admin? ? "Register a new user" : "Sign up" %></h3>
+
+<div class="create-user">
+	<%= form_for(@user) do |f| %>
+		<% if @user.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@user.errors.count, "error") %> prohibited you from creating a account</h2>
+
+				<ul>
+				<% @user.errors.full_messages.each do |message| %>
+					<li> <%= message %></li>
+				<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<div class="field form-group row">
+			<%= f.label :name, class: "col-sm-2 col-sm-offset-1 col-form-label" %>
+			<div class="col-sm-8">
+				<%= f.text_field :name, class: "form-control" %>
+			</div>
+		</div>
+		<div class="field form-group row">
+			<%= f.label :email , class: "col-sm-2 col-sm-offset-1  col-form-label"  %>
+			<div class="col-sm-8">
+				<%= f.text_field :email , class: "form-control"%>
+			</div>
+		</div>
+		<div class="field form-group row">
+			<%= f.label :phone , class: "col-sm-2 col-sm-offset-1  col-form-label" %>
+			<div class="col-sm-8">
+				<%= f.text_field :phone , class: "form-control" %>
+			</div>
+		</div>
+		<div class="field form-group row">
+			<%= f.label :address , class: "col-sm-2 col-sm-offset-1  col-form-label" %>
+			<div class="col-sm-8" >
+				<%= f.text_area :address , class: "form-control" %>
+			</div>
+		</div>
+		<div class="field form-group row">
+			<%= f.label :password , class: "col-sm-2 col-sm-offset-1  col-form-label" %>
+			<div class="col-sm-8">
+				<%= f.password_field :password , class: "form-control" %>
+			</div>
+		</div>
+		<div class="actions form-group row">
+			<div class="col-sm-5 col-sm-offset-5">
+				<%= f.submit is_admin? ? "Create User" : "Sign Up" ,class: "btn btn-success" %>
+			</div>
+		</div>
+	<% end %>
+</div>

@@ -1,0 +1,11 @@
+<h4> <%= link_to "Back" , new_category_path , method: "get" , class: "btn btn-success" %> </h4>
+<h4> Edit Category </h4>
+<%= form_for(@cat) do |t| %>
+<div class="field from-group row">
+	<%= t.label :name , class: "col-sm-2 col-sm-label" %>
+	<div class="col-sm-6">
+		<%= t.text_field :name , class: "form-control" %>
+	</div>
+</div>
+<%= t.submit "Update" , class: "btn btn-success" %>
+<% end %>

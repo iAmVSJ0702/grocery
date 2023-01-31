@@ -1,0 +1,48 @@
+
+<%= notice %>
+<h1>Your Cart</h1>
+<%= link_to "Keep on Shopping" , root_path , class: "btn btn-success pull-right" %>
+<% cartItems = current_user.my_cart_items %>
+<table class="table">
+	<thead>
+  	<tr>
+    	<th>Id</th>
+    	<th>Title</th>
+    	<th>Price</th>
+      <th>Quantity</th>
+    	<th>Options</th>
+  	</tr>
+	</thead>
+	<tbody>
+  <% total = 0 %>
+	<% cartItems.each do |theItem| %>
+  <% quantity = Cart.quantity(theItem[:id], current_user.id) %>
+  	<tr>
+    	<th scope="row"><%= theItem[:id] %></th>
+    	<td><%= theItem[:title] %></td>
+    	<td><%= theItem[:price] %></td>
+      <td><%= link_to "" , carts_path(theItem.id) , method: :post , class: "glyphicon glyphicon-triangle-top" %> <%= quantity %> <%= link_to "" , cart_path(theItem) , method: :put , class: "glyphicon glyphicon-triangle-bottom" %> </td>
+    	<td><%= link_to  "Delete" , edit_cart_path(theItem.id) %> </td>
+  	</tr>
+    <% floatPrice = theItem[:price].to_f %>
+    <% total = total + (floatPrice*quantity) %>
+  <% end %>
+  </tbody>
+</table>
+<h4 class="pull-right">Total = <%= total %> </h4> 
+<p class="clearfix" > </p> 
+<div class=buttons>
+<% unless current_user.carts.first.nil? %>
+  <%= form_tag current_user.carts.first , method: :delete do %>
+    <%= submit_tag "Buy and Checkout" , class: "btn btn-success pull-right" %>
+    <div class="form-group row">
+      <%= label_tag :Delivery_Address , nil ,class: "col-sm-12 col-sm-label" %>
+      <div class="col-sm-6">
+        <%= text_area_tag :daddress , current_user.address , class: "form-control"%>
+      </div>
+    </div>
+  <% end %>
+  <p>Payment Type:COD</p>
+  <small>* if delivery address is left empty then items will be delivered to the address used while signing up. </small>
+<% end %>
+</div>

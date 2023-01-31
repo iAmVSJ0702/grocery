@@ -1,0 +1,29 @@
+
+<h5><%= notice %></h5>
+<h4> <%= link_to "Admin Dashboard" , admin_index_path, method: "get" , class: "btn btn-success" %>
+<h3>Add new brand for Subcategory :<%= @subCatName  %> and Category : <%= @catName %> </h3>
+<%= form_for(@newBrand) do |f| %>
+	<div class= "field" >
+    <%= f.hidden_field :category , value: @cat[:id] %>
+    <%= f.hidden_field :subcategory , value: @subcat[:id] %>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+		<%= f.submit :Create , class: "btn btn-success"  %>
+	</div>
+<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Category Name</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @brandAll.each do |brand| %>
+    <tr>
+      <td scope="row"><%= brand[:name] %></td>
+      <td><%= link_to "Edit" , edit_brand_path(brand.id) , method: "get" %> / <%= link_to "Destroy" , brand_path(brand), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
