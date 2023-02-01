@@ -36,8 +36,6 @@
       	<%= form_tag new_brand_path , method: "get" do %>
 			<%= select_tag(:category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category" , class: "auto-update", data: {controller: "categories"} } ) %>
 			<br><br>
-			<%= select_tag(:subcategory , options_from_collection_for_select( Subcategory.all , :id , :name) , { prompt: "Select Category" , class: "auto-update", data: {controller: "subcategories"} } ) %>
-			<br><br>
 			<div class="auto-update" id="category_subcategories_list">
 			</div>
 			<%= submit_tag("GO", class: "btn btn-success") %>
