@@ -14,7 +14,12 @@ Rails.application.routes.draw do
   end
   resources :categories , only: [:new,:create,:edit,:update,:destroy]
   resources :users
-  resources :items
+  resources :items do
+    collection do
+      get :fetch_category_subcategories
+      get :fetch_subcategory_brands
+    end
+  end
   resources :carts
   root 'items#index'
 

@@ -31,17 +31,15 @@
       Add Brand <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-      <div data-controller="subcategory">
-	  <li>
       	<%= form_tag new_brand_path , method: "get" do %>
+			<li><label>Categories:</label><br>
 			<%= select_tag(:category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category" , class: "auto-update", data: {controller: "categories"} } ) %>
 			<br><br>
+			</li>
 			<div class="auto-update" id="category_subcategories_list">
 			</div>
 			<%= submit_tag("GO", class: "btn btn-success") %>
 		<% end %>
-      </li>
-	  </div>
     </ul>
   </li>
   

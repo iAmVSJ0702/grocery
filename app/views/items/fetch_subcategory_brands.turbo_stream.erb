@@ -1,0 +1,15 @@
+<% if @brands.present? %>
+    <%= turbo_stream.replace "subcategory_brands_list" do %>
+        <div class="auto-update" id="subcategory_brands_list">
+            <label class="auto-update mb-2 mt-3">Brands<br></label>
+            <select class="auto-update" name="item[brand]" id="item_brand">
+            <option value="">Select Brand</option>
+            <% @brands.each do |brand| %>
+                    <option value="<%= brand.id %>"><%= brand.name %></option>
+                <% end %>
+            </select>
+
+
+        </div>
+    <% end %>
+<% end %>

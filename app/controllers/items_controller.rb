@@ -101,10 +101,19 @@ class ItemsController < ApplicationController
     itemToDelete.destroy
     redirect_to root_path
   end
+
+  def fetch_category_subcategories
+    category = Category.find_by(id: params[:category_code])
+    @subcategories = category.subcategories.all
+  end
+
+  def fetch_subcategory_brands
+    subcategory = Subcategory.find_by(id: params[:subcategory_code])
+    @brands = subcategory.brands.all
+  end
+
   private
   	def set_post
   		@my_item = Item.find(params[:id]) 
   	end 
-
-
 end

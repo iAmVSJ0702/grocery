@@ -8,12 +8,10 @@ class BrandsController < ApplicationController
 
   def new
     unless params[:category] == "" || params[:subcategory] == "" 
-      @cat = Category.find_by(id: params[:category])
-      @subcat = Subcategory.find_by(id: params[:subcategory])
-      @brandAll = @subcat.brands.all
-      @subCatName = @subcat[:name]
-      @catName = @cat[:name] 
       @newBrand = Brand.new
+      @cat = Category.find_by(id: params[:category])
+      @subCat = Subcategory.find_by(id: params[:subcategory])
+      
     else
        redirect_to admin_index_path , notice: "Please enter parameters"
     end

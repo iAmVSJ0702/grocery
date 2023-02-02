@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-
-
 	skip_before_action :ensure_login , only: [:new , :create]
   skip_before_action :ensure_admin
   skip_before_action :verify_authenticity_token , only: [:destroy]

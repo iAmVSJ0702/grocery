@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
   def new
     @newCat = Category.new
     @allCat = Category.all
+    @newCat.subcategories.build.brands.build
   end
 
   def create

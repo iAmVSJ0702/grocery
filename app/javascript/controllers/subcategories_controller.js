@@ -6,18 +6,19 @@ export default class extends Controller {
   }
 
   initialize() {
-    this.element.setAttribute("data-action", "change->categories#loadCategorySubcategories")
+    this.element.setAttribute("data-action", "change->subcategories#loadCategorySubcategories")
   }
 
   loadCategorySubcategories(){
     const selectedCategory = this.element.options[this.element.selectedIndex].value
-    this.url = `/admin/fetch_category_subcategories?category_code=${selectedCategory}`
+    this.url = `/items/fetch_category_subcategories?category_code=${selectedCategory}`
     fetch(this.url,{
       headers: {
         Accept: "text/vnd.turbo-stream.html"
       }
     })
     .then(response => response.text())
-    .then(html=> Turbo.renderStreamMessage(html))    
+    .then(html=> Turbo.renderStreamMessage(html))
+    
   }
 }

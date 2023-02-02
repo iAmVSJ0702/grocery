@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
 	before_action :set_post , only: [:destroy]
   skip_before_action :ensure_login , only: [:new , :create]
   skip_before_action :ensure_admin , only: [:new , :create , :show , :edit , :update]
@@ -11,10 +10,8 @@ class UsersController < ApplicationController
   def new
     if session[:user_id] && current_user.account_type != "admin"
       redirect_to root_path
-    end
-  	
+    end  	
     @user = User.new
-
   end
 
   def edit
@@ -38,7 +35,6 @@ class UsersController < ApplicationController
     else
       render :edit , object: @my_user
     end
-
   end
 
   def create

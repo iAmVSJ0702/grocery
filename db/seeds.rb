@@ -77,5 +77,4 @@ Category.second.subcategories.second.brands.create! [{name: "local"},
 {name: "brazilian"}]
 
 
-User.create! [{name: "Deepak Tibrewal" , email: "Tibrewal@gmail.com", phone: 8999999999 , address: "Some Apartment" , password: "nuoo" ,account_type: "normal"}, 
-{name: "admin" , email: "admin@admin.com" , phone: 8999999997 , address: "admin", password: "admin" , account_type: "admin"}]
+User.create! [{name: "admin" , email: "admin@admin.com" , phone: 8999999997 , address: "admin", password: "admin" , account_type: "admin"}]

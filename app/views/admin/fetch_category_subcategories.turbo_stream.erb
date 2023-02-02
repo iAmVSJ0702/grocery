@@ -1,12 +1,10 @@
 <% if @subcategories.present?%>
     <%= turbo_stream.replace "category_subcategories_list" do %>
         <div class="auto-update" id="category_subcategories_list">
-            <label class="auto-update mb-2 mt-3"><p>Subcategories:</p></label>
-            <select class="auto-update" name= "admin[subcategory]" id="admin_subcategory">
-                <% @subcategories.each do |subcategory| %>
-                    <option value="<%= subcategory[0] %>"><%= subcategory.name %></option>
-                <% end %>
-            </select>
+        <li>
+            <label class="auto-update mb-2 mt-3">Subcategories:<br></label>
+            <%= select("admin", "subcategory", @subcategories.all.collect {|subcategory| [subcategory.name, subcategory.id]}, prompt: "Select Subcategory", class: "auto-update") %>
+        </li>
         </div>
     <% end %>
 <% end %>

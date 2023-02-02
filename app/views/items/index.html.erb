@@ -2,13 +2,10 @@
 	<div class="col-sm-3 sidebar">
 	<div data-controller="subcategory">
 		<%= form_tag items_path , { method: "get", remote: true, id: "buga"} do %>
-		<p>Category:</p>
-		<p><%= select_tag( :category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update", data: {controller: "categories"}} ) %></p>
-
-			<div class="auto-update" id="category_subcategories_list">
-			</div>
-		<p>Brand: </p>
-		<p class="updated2"> <%= select_tag(:brand , options_from_collection_for_select(Brand.all, :id , :name), {prompt: "Select brand", onchange: "$('#buga').submit()"}) %>  </p>
+		<p>Category:<br>
+		<%= select_tag( :category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update", data: {controller: "subcategories"}} ) %></p>
+		<p><div class="auto-update" id="category_subcategories_list"></div></p>
+		<p><div class="auto-update" id="subcategory_brands_list"></div></p>
 		<% end %>
 	</div>
 
