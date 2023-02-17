@@ -4,11 +4,10 @@
 		<% if @my_user.errors.any? %>
 			<div id="error_explanation">
 				<h4><%= pluralize(@my_user.errors.count, "error") %> prohibited you from updating your details</h4>
-
 				<ul>
-				<% @my_user.errors.full_messages.each do |message| %>
-					<li> <%= message %></li>
-				<% end %>
+					<% @my_user.errors.full_messages.each do |message| %>
+						<li> <%= message %></li>
+					<% end %>
 				</ul>
 			</div>
 		<% end %>
@@ -57,10 +56,10 @@
 				</div>
 			</div>
 			<div class="actions form-group row">
-			<div class="col-sm-5 col-sm-offset-5">
-				<%= f.submit "Change Password" ,class: "btn btn-success" %>
+				<div class="col-sm-5 col-sm-offset-5">
+					<%= f.submit "Change Password" ,class: "btn btn-success" %>
+				</div>
 			</div>
-		</div>
 		<% end %>
 	<% end %>
 </div>

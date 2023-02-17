@@ -14,8 +14,8 @@ class User < ApplicationRecord
 	has_many :orders , dependent: :destroy
 
 	def my_cart_items
-		 item_ids = carts.all.pluck :item_id
-		 Item.where(id: item_ids)
+		item_ids = carts.all.pluck :item_id
+		Item.where(id: item_ids)
 	end
 
 	private

@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 	before_action :set_post , only: [:show , :edit , :update , :destroy]
-  skip_before_action :ensure_login , only: [:index , :show]
-  skip_before_action :ensure_admin , only: [:index, :show]
+  skip_before_action :ensure_login
+  skip_before_action :ensure_admin
   
   def index
   	@test = params[:category]
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
   	respond_to do |format|
   		format.html
   		format.json
-  		format.js 
+  		format.js
   	end
   end
 
@@ -41,14 +41,13 @@ class ItemsController < ApplicationController
     @title = params[:title]
     @price = params[:price]
     @desc = params[:description]
-    @av = params[:avatar]
     if @title=="" || @price=="" || @desc==""  || params[:category]=="" || params[:subcategory]=="" || params[:brand]==""
       redirect_to new_item_path , alert: "fields cannot be empty"
     else
       @category = Category.find_by(id: params[:category])
       @subcat = @category.subcategories.find_by(id: params[:subcategory])
       @brand = @subcat.brands.find_by(id: params[:brand])
-      @newItem =  @brand.items.create title: @title , price: @price , description: @desc , avatar: @av
+      @newItem =  @brand.items.create title: @title , price: @price , description: @desc
       if @newItem.save 
         redirect_to admin_index_path , notice: "Success for new item"
       else
@@ -60,7 +59,7 @@ class ItemsController < ApplicationController
 
   def show
     @userName = User.find_by(id: session[:user_id])
-    @subcategory = Subcategory.find_by("id = ?", params[:item][subcategory_id])
+    @item = Item.find_by(id: params[:id])
   end
 
   def edit
@@ -77,15 +76,12 @@ class ItemsController < ApplicationController
       item_description = params[:item][:description]
 
       @item = Item.find_by(id: params[:id])
-      @av = params[:item][:avatar]
+
       if item_name=="" || item_price=="" || item_description==""
         redirect_to edit_item_path(params[:id]) , notice: "Fields Cannot be empty"
       else
         @oldBrand = @item.getbrand
         @item.update(title: item_name, price: item_price , description: item_description)
-        unless @av.nil?
-          @item.update(avatar: @av)
-        end
         @oldBrand.items.delete(@item) unless @oldBrand.nil?
         @updateItem = Item.find_by(id: params[:id])
         @newBrand.items << @updateItem
@@ -103,12 +99,12 @@ class ItemsController < ApplicationController
   end
 
   def fetch_category_subcategories
-    category = Category.find_by(id: params[:category_code])
+    category = Category.find_by(id: params[:subcategory_code])
     @subcategories = category.subcategories.all
   end
 
   def fetch_subcategory_brands
-    subcategory = Subcategory.find_by(id: params[:subcategory_code])
+    subcategory = Subcategory.find_by(id: params[:brand_code])
     @brands = subcategory.brands.all
   end
 

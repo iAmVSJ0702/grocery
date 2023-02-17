@@ -1,0 +1,259 @@
+@import "font-awesome";
+
+* {
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+.card-title.title{
+  font-size:x-large;
+}
+
+select{
+  background-color: #84c225;
+  color: #fff;
+}
+
+select:hover{
+  background-color: #589300;
+}
+
+body{
+  background-color:  #eeeeee;
+}
+
+table {
+  border-collapse: collapse;
+}
+th {
+  background-color:#589300;
+  Color:white;
+}
+th, td {
+  width:150px;
+  text-align:center;
+  border:1px solid black;
+  padding:5px
+}
+
+.row, section, .create-user, .text-center{
+  text-align: center;
+  font-family: 'Brush Script MT', cursive;
+}
+
+.card{
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bolder;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: larger ;
+}
+
+.normal{
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center, .dropdown{
+ text-align: center;
+}
+
+.add-user{
+  font-size: larger;
+}
+
+.notice{
+  text-align: center;
+}
+
+.text-center{
+  margin: 10px;
+  font-size: 50px;
+}
+
+.text-center.add-element{
+  font-size:xx-large;
+}
+
+.list-group, .form-group-element{
+  font-size: 25px;
+}
+
+.category{
+  margin-bottom: 15px;
+}
+
+.category-group{
+  margin: 5px;
+}
+
+.form-group{
+  margin: 10px;
+}
+
+.btn.btn-success{
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 600;
+  margin: 0 10px;
+  width: 100px;
+  padding: 10px 0;
+  box-shadow: 0 0 20px #84c225;
+  transition: 0.4s;
+}
+
+.btn.btn-success:hover {
+  color: white;
+  width: 150px;
+  box-shadow: 0 0 20px #589300;
+  background-color: #589300;
+}
+
+.fa-solid.fa-pen-to-square, .fa-solid.fa-bars,.fa-solid.fa-cart-shopping{
+ margin: 30px;
+ font-size: 40px;
+}
+
+.fa-solid.fa-eye, .fa-solid.fa-trash,.fa-solid.fa-pen{
+  font-size: medium;
+  margin: 5px;
+}
+
+.header, .footer {
+  background-color: #454742;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header .container {
+  font-size: 24px;
+  padding: 0px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+}
+
+.nav-toggle, .nav-toggle-lable {
+  display: none;
+}
+
+.menu, .bottom-menu {
+  display: flex;
+  column-gap: 20px;
+  margin: 25px 10px;
+  margin-right: 5px;
+}
+
+a, .logo .fa-solid, .nav-toggle-lable .fa-solid {
+  color: #84c225;
+}
+a:hover, .logo .fa-solid:hover, .nav-toggle-lable .fa-solid:hover, .menu li a.active {
+  color: #589300;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-left: 100px;
+  margin-right: 100px;
+  row-gap: 50px;
+  box-shadow: 0 0 40px lighten(#000, 60%);
+}
+.grid-item {
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.field{
+  font-weight: bolder;
+  font-size:xx-large;
+}
+
+.row.grid{
+  display: grid;
+  grid-template-columns: 200px auto;
+  border-bottom: solid #454742;
+}
+
+.col-sm-3.sidebar{
+  border-right: solid #454742;
+  margin-right: auto;
+  display:flex;
+  margin-top: 0%;
+}
+
+.update-body{
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.card-body.list{
+  background-color: #fff;
+	border-radius: 4px;
+	max-width: 400px;
+	margin: 10% auto;
+	height: 100px;
+	position: relative;
+	padding: 34px;
+	color: #444;
+	cursor: pointer;
+  box-shadow: 0 0 40px lighten(#000, 60%);
+}
+
+.item-element{
+  font-size: x-large;
+}
+
+@media (max-width: 1000px) {
+  .nav-toggle-lable {
+      display: block;
+  }
+
+  .update-body{
+    grid-template-columns: auto auto;
+  }
+
+  .menu {
+      display: none;
+  }
+  .nav-toggle:checked ~ .menu {
+      display:block;
+      position:fixed;
+      top: 50px;
+      left: -10px;
+      width:100%;
+      background-color:#333333;
+      text-align: center;
+  }
+  .menu li {
+      margin: 40px 0;
+  }
+}
+
+@media (max-width: 700px){
+  .row.grid{
+    grid-template-columns: auto;
+  }
+  .col-sm-3.sidebar{
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 0px;
+  }
+  .update-body{
+    grid-template-columns: auto;
+  }
+}

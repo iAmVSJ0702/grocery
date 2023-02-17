@@ -38,21 +38,27 @@ class UsersController < ApplicationController
   end
 
   def create
+    @name = params[:name]
+    @email = params[:email]
+    @phone = params[:phone]
+    @address = params[:address]
+    @password = params[:password]
   	@user = User.new(user_params)
-  	if @user.save
-  		acc_type = User.find_by(email: params[:user][:email])
-  		acc_type.account_type = "normal"
-  		acc_type.save
-      if current_user && current_user.account_type=="admin"
-        redirect_to admin_index_path , notice: "New user created successfully"
-      else
-  		  session[:user_id] = acc_type.id
-        redirect_to root_path , notice: "logged in successfully"
-      end
-
-  	else
-  		render :new
-  	end
+  	  if @user.save
+  	  	acc_type = User.find_by(email: params[:user][:email])
+  		  acc_type.account_type = "normal"
+    		acc_type.save
+        if current_user && current_user.account_type=="admin"
+          redirect_to admin_index_path , notice: "New user created successfully"
+        else
+  		    session[:user_id] = acc_type.id
+          redirect_to root_path , notice: "logged in successfully"
+        end
+     	elsif user_params.present?
+  	  	redirect_to new_user_path, notice: "fields cannot be empty"
+      else 
+        redirect_to new_user_path, notice: "something went wrong"
+  	  end
   end
 
   def show

@@ -11,8 +11,8 @@ export default class extends Controller {
   }
 
   loadSubcategoryBrands(){
-    const selectedSubcategory = this.element.options[this.element.selectedIndex].value
-    this.url = `/items/fetch_subcategory_brands?subcategory_code=${selectedSubcategory}`
+    const selectedBrand= this.element.options[this.element.selectedIndex].value
+    this.url = `/items/fetch_subcategory_brands?brand_code=${selectedBrand}`
     fetch(this.url,{
       headers: {
         Accept: "text/vnd.turbo-stream.html"

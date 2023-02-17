@@ -1,20 +1,21 @@
-
+<div class="center">
 <h4><%= notice %> </h4>
-<h4> <%= link_to "Category", { action: "new" , category: {id: @subCat.category.id}}, class: "btn btn-success" %> </h4>
+<h2 class="text-center">Edit Category</h2><br>
 <%= form_for(@subCat) do |t| %>
-<div class="field form-group row" >
-<p>
-  <%= t.label :category_id %><br>
-  <%= collection_select(:subcategory, :category_id, Category.all, :id, :name, options ={:prompt => ""}) %>
-</p>
-  <%= t.label :name , class: "col-sm-2 col-sm-label" %>
-  <div class="col-sm-4">
-    <%= t.text_field :name , class: "form-control" %>
-  </div>
-  <%= label_tag :Edit_Category_for_Subcategory, nil , class: "col-sm-2 col-sm-label" %>
-  <div class= "col-sm-4">
-    <%= select_tag(:category,options_from_collection_for_select( Category.all , :id , :name, @subCat.category.id ))%>
-  </div>
-</div>
-<%= t.submit "Update" , class: "btn btn-success" %>
+  <div class="field form-group row" >
+    <p>
+      <%= t.label :category_id %><br>
+      <%= collection_select(:subcategory, :category_id, Category.all, :id, :name, options ={:prompt => ""}) %>
+    </p><br>
+    <%= t.label :name , class: "col-sm-2 col-sm-label" %>
+    <div class="col-sm-4">
+      <%= t.text_field :name , class: "form-control" %>
+    </div><br>
+    <%= label_tag :Edit_Category_for_Subcategory, nil , class: "col-sm-2 col-sm-label" %>
+    <div class= "col-sm-4">
+      <%= select_tag(:category,options_from_collection_for_select( Category.all , :id , :name, @subCat.category.id ))%>
+    </div>
+  </div><br>
+  <%= t.submit "Update" , class: "btn btn-success" %>
 <% end %>
+</div>

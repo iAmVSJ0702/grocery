@@ -11,7 +11,8 @@ class BrandsController < ApplicationController
       @newBrand = Brand.new
       @cat = Category.find_by(id: params[:category])
       @subCat = Subcategory.find_by(id: params[:subcategory])
-      
+      @subCatName = @subCat.name
+      @brands = @subCat.brands.all
     else
        redirect_to admin_index_path , notice: "Please enter parameters"
     end
@@ -67,7 +68,7 @@ class BrandsController < ApplicationController
     @target = params[:target]
     @subcategory = Subcategory.find_by(id: params[:subcategory]).invert
     respond_to do |format|
-    format.turbo_stream
+      format.turbo_stream
+    end
   end
-end
 end

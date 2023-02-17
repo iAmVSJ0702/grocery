@@ -1,106 +1,97 @@
-<h1>Admin Dashboard</h1>
+<div class= "center"><br><br>
+<h1>Admin Dashboard</h1><br><br>
 <h2><%= notice %></h2>
 
-<ul class="nav justify-content-center nav-tabs">
-  <li class="nav-item">
-    <%= link_to "Add new category" , new_category_path , class: "nav-link" %>
-  </li>
-  <li class="nav-item">
-    <%= link_to "All Users" , users_path , class: "nav-link"  %>
-  </li>
-  <li class="nav-item">
-    <%= link_to "Add new items to sell" , new_item_path, method: "get" , class: "nav-link" %>
-  </li>
-  <li role="presentation" class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-      Add Subcategory <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-      	<%= form_for(:category, url: new_subcategory_path, method: "get") do |f| %>
-					<%= f.label :category %>
-					<%= f.select(:id,options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category" }) %>
-					<%= f.submit "Go" , class: "btn btn-success" %>
-				<% end %>
-      </li>
-    </ul>
-  </li>
-
-  <li role="presentation" class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-      Add Brand <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-      	<%= form_tag new_brand_path , method: "get" do %>
-			<li><label>Categories:</label><br>
-			<%= select_tag(:category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category" , class: "auto-update", data: {controller: "categories"} } ) %>
-			<br><br>
-			</li>
-			<div class="auto-update" id="category_subcategories_list">
-			</div>
-			<%= submit_tag("GO", class: "btn btn-success") %>
-		<% end %>
-    </ul>
+<ul class="grid-container">
+	<li  class="grid-item">
+    <h3><%= link_to "Change Password" , edit_admin_path(current_user.id) , method: "get" %></h3>
   </li>
   
+	<li class="grid-item">
+    <h3><%= link_to "All Users" , users_path , class: "nav-link"  %></h3>
+  </li>
 
-  <li  class="nav-item">
-    <%= link_to "Change Password" , edit_admin_path(current_user.id) , method: "get" %>
+  <li class="grid-item">
+    <h3><%= link_to "Add new Category" , new_category_path , class: "nav-link" %></h3>
+  </li>
+
+  <li class="grid-item">
+    <h3><%= link_to "Add new items to sell" , new_item_path, method: "get" , class: "nav-link" %></h3>
+  </li>
+
+  <li role="presentation" class="grid-item">
+    <h3 class="dropdown-togglecategory">Add Subcategory <span class="caret"></span></h3><br>
+    <%= form_for(:category, url: new_subcategory_path, method: "get", id: "buga") do |f| %>
+			<label>Categories:</label><br>
+			<%= f.select(:id,options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update"}) %><br>
+			<br>
+			<%= f.submit "Go" , class: "btn btn-success" %>
+		<% end %>
+  </li>
+
+  <li role="presentation" class="grid-item">
+    <h3 class="dropdown-toggle">Add Brand</h3><br>
+    <%= form_tag new_brand_path , method: "get" do %>
+			<label>Categories:</label><br>
+			<%= select_tag(:category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category" , class: "auto-update", data: {controller: "categories"} } ) %>
+			<br>
+			<div class="auto-update" id="category_subcategories_list">
+			</div><br>
+			<%= submit_tag("GO", class: "btn btn-success") %>
+		<% end %>
   </li>
 </ul>
-
-<%= link_to "Home Page", root_path %>
 
 <h3> Recent Transactions</h3>
 
 <% @allOrders.each do |order| %>
 <% total=0 %>
-		<div class="alert alert-warning row" role="alert">
-			<div class="col-sm-2">
-				Order id:	<%= order.id %>
-			</div>
-			<div class="col-sm-2">
-				User id: <%= order.user.id %>
-			</div>
-			<div class="col-sm-2">
-				User name: <%= order.user.name %>
-			</div>
-			<div class="col-sm-4">
-				Delivery Address: <%= order.daddress %>
-				<p> Payment Type: COD(Cash on Delivery) </p>
-			</div>
-			<div class="col-sm-2">
-				Date and Time : <%= order.created_at.in_time_zone("Kolkata").strftime(" %d %m %Y , %I %M %p %Z") %>
-			</div>
+	<div class="alert alert-warning row" role="alert">
+		<div class="col-sm-2">
+			Order id:	<%= order.id %>
 		</div>
-		<table class="table">
-	  	<thead>
-	    	<tr>
-	      	<th>#</th>
-	      	<th>Title</th>
-	      	<th>Price</th>
-	      	<th>Quantity</th>
-	      	<th>Description</th>
-	      	<th>Option </th> 
-	    	</tr>
-	  	</thead>
-	  	<tbody>
-	  	<% orderitem = order.OrderedItems %>
-	  	<% orderitem.each do |oi| %>
-	    	<tr>
-	      	<th scope="row"><%= oi.id %></th>
-	      	<td><%= oi.title %></td>
-	      	<td><%= oi.price %></td>
-	      	<td><%= oi.quantity %> </td>
-	      	<td><%= oi.description %></td>
-	      	<td><%= link_to "View" , oi.item %> </td>
-	    	</tr>
-	    	<% floatPrice = oi[:price].to_f %>
-        <% total= total+ (floatPrice*oi[:quantity]) %>
-	    <% end %>
-	  	</tbody>
-		</table>
-		<h4 class="pull-right"> Grand Total = <%= total %> </h4>
-		<p class="clearfix"> </p>
+		<div class="col-sm-2">
+			User id: <%= order.user.id %>
+		</div>
+		<div class="col-sm-2">
+			User name: <%= order.user.name %>
+		</div>
+		<div class="col-sm-4">
+			Delivery Address: <%= order.daddress %>
+			<p> Payment Type: COD(Cash on Delivery) </p>
+		</div>
+		<div class="col-sm-2">
+			Date and Time : <%= order.created_at.in_time_zone("Kolkata").strftime(" %d %m %Y , %I %M %p %Z") %>
+		</div>
+	</div>
+	<table class="table">
+  	<thead>
+    	<tr>
+      	<th>#</th>
+      	<th>Title</th>
+      	<th>Price</th>
+      	<th>Quantity</th>
+      	<th>Description</th>
+      	<th>Option </th> 
+    	</tr>
+  	</thead>
+  	<tbody>
+  	<% orderitem = order.OrderedItems %>
+  	<% orderitem.each do |oi| %>
+    	<tr>
+      	<th scope="row"><%= oi.id %></th>
+      	<td><%= oi.title %></td>
+      	<td><%= oi.price %></td>
+      	<td><%= oi.quantity %> </td>
+      	<td><%= oi.description %></td>
+      	<td><%= link_to "View" , oi.item %> </td>
+    	</tr>
+    	<% floatPrice = oi[:price].to_f %>
+      <% total= total+ (floatPrice*oi[:quantity]) %>
+    <% end %>
+  	</tbody>
+	</table>
+	<h4 class="pull-right"> Grand Total = <%= total %> </h4>
+	<p class="clearfix"> </p>
 <% end %>
-
+</div>

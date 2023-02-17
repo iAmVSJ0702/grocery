@@ -1,31 +1,33 @@
-<h4> <%= link_to "Admin Dashboard" , admin_index_path , method: "get" ,class: "btn btn-success" %>
-<h4>Note: If you are not the admin and able to view this then please inform support - thanks</h4>
-<h5>Add new User : <%= link_to "Add User" , new_user_path %> </h5>
-<table class="table">
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>Name</th>
-      <th>email</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th>Account Type</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @allUsers.each do |use| %>
-    <% unless use.account_type == "admin" %>
-    <tr>
-    <th scope="row"><%= use[:id] %></th>
-      <td><%= use[:name] %></td>
-      <td><%= use[:email] %></td>
-      <td><%= use[:address] %></td>
-      <td><%= use[:phone] %> </td>
-      <td><%= use[:account_type] %></td>
-      <td><%= link_to "Destroy" , user_path(use), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
-    </tr>
+<div class="center">
+  <h4 class="notice">Note: If you are not the admin and able to view this then please inform support - thanks</h4>
+  <h5 class="text-center">Add new User : <br></h5>
+  <div class="add-user"><%= link_to "Add User" , new_user_path %> </div>
+  <table class="card">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>email</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Account Type</th>
+        <th>Delete</th>
+      </tr>
+    </thead><br>
+    <tbody>
+    <% @allUsers.each do |use| %>
+      <% unless use.account_type == "admin" %>
+      <tr>
+      <th scope="row"><%= use[:id] %></th>
+        <td><%= use[:name] %></td>
+        <td><%= use[:email] %></td>
+        <td><%= use[:address] %></td>
+        <td><%= use[:phone] %> </td>
+        <td><%= use[:account_type] %></td>
+        <td><%= link_to "Destroy" , user_path(use), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+      </tr>
+      <% end %>
     <% end %>
-  <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

@@ -1,5 +1,4 @@
 class CategoriesController < ApplicationController
-
   def new
     @newCat = Category.new
     @allCat = Category.all

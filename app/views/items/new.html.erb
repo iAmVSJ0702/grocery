@@ -1,9 +1,9 @@
 <h4><%= notice %> </h4>
 <h4><%= alert %> </h4>
-<h4> <%= link_to "Admin Dashboard" , admin_index_path , method: "get" , class: "btn btn-success" %>
-<h3>Add new Item </h3>
+
 <%= form_tag items_path , { method: "post", id: "buga" , multipart: true }  do %>
-	<div class="field form-group row">
+	<div class="field form-group row"><br>
+		<h3 class="text-center">Add new Item </h3>
 		<%= label_tag :title , nil ,class: "col-sm-2 col-form-label"  %>
 		<div class="col-sm-6">
 			<%= text_field_tag :title , nil ,class: "form-control" %>
@@ -20,25 +20,19 @@
 		<div class="col-sm-6">
 			<%= text_area_tag :description , nil , class: "form-control" %>
 		</div>
-	</div> 
+	</div>
+		<div class="field form-group row" >
+	</div>
 
-	<div class="field form-group row" >
-		<%= file_field_tag :avatar , class: "col-sm-6" %>
-	</div>
-	<div class=field>
-		<%= select_tag(:category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category" , class: "auto-update"} ) %>
-	</div>
-	<div class=field>
-		<%= select_tag(:subcategory , "" , {prompt: "Select subcategory", class: "sub-update"} ) %>
-	</div>
-	<div class=field>
-		<%= select_tag(:brand , "" , {prompt: "Select Brand", class: "brand"} ) %>
+	<div class="field dorm-group row">
+		<label class="auto-update mb-2 mt-3">Categories:<br></label>
+		<%= select_tag( :category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update", data: {controller: "subcategories"}} ) %>
+		<p><div class="auto-update" id="category_subcategories_list"></div></p>
+		<p><div class="auto-update" id="subcategory_brands_list"></div></p>
 	</div>
 	<div class="action form-group row">
-		<div class="col-sm-6">
-			<%= submit_tag("Create Item", class: "btn btn-primary") %>
+		<div class="col-sm-6"><br>
+			<%= submit_tag("Create Item", class: "btn btn-success") %>
 		</div>
 	</div>
 <% end %>
-<br>
-<br>

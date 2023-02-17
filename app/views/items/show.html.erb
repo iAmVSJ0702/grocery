@@ -1,4 +1,11 @@
-
 <div class="row">
-<p><%= @subcategory.name.titleize %></p>
-<p><%= link_to 'Go Back', item_index_path %></p>
+	<h2>Welcome to Details Page </h2><br>
+	<section>
+		<h3 class="text-center">
+			<%= @my_item.title %>
+		</h3><br>
+		<p class= "col-sm-offset-4 item-element">Price : <%= @my_item.price %></p> 
+		<p class= "col-sm-offset-4 item-element">Description: <%= @my_item.description %></p><br><br>
+		<p class= "col-sm-offset-4"><%= link_to "Add to Cart" , ordered_items_path(@my_item) , method: :get %></p>
+	</section>
+</div>

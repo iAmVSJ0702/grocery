@@ -1,16 +1,15 @@
 <div class="update-body">
 	<% @all_items.each do |item| %>
-	<section class="col-sm-4 col-md-3">
-		<div class="card" style="width: 20rem;">
-  		<%= image_tag item.avatar.url(:thumb) %>
-  		<div class="card-body">
-    		<h4 class="card-title"><%= item.title %></h4>
-    		<p class="card-text">The price is : <%= item.price %> </p>
-    		<%= link_to "View" , item , class: "btn btn-success" %>
-    		<%= link_to "Destroy" , item_path(item) , data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "btn btn-danger" if is_admin? %>
-    		<%= link_to "Edit" , edit_item_path(item), method: "get" , class: "btn btn-primary" if is_admin? %>
-  		</div>
-		</div>
-	</section>
+		<section class="col-sm-4 col-md-3">
+			<div class="normal" style="width: 20rem;">
+	  		<div class="card-body list">
+	    		<h4 class="card-title title"><%= item.title %></h4><br>
+	    		<p class="card-text">The price is : <%= item.price %> </p><br>
+	    		<%= link_to icon('fa-solid', 'eye') , item , class: "btn" %>
+	    		<%= link_to icon('fa-solid', 'trash') , item_path(item) , data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "btn btn-danger" if is_admin? %>
+	    		<%= link_to icon('fa-solid', 'pen') , edit_item_path(item), method: "get" , class: "btn btn-primary" if is_admin? %>
+	  		</div>
+			</div>
+		</section>
 	<% end %>
 </div>

@@ -1,18 +1,20 @@
+<div class="center">
 <%= notice %>
- <h4> <%= link_to "Subcategory", { action: "new" , subcategory: @brand.subcategory.id , category: @brand.subcategory.category.id  }, class: "btn btn-success" %> </h4>
-  <%= form_for(@brand) do |t| %>
- <div class="field form-group row" >
-	 <%= t.label :name , class: "col-sm-2 col-sm-label" %>
+<h2 class="text-center">Edit Brand</h2><br>
+<%= form_for(@brand) do |t| %>
+<div class="field form-group row" >
+	<%= t.label :name , class: "col-sm-2 col-sm-label" %>
 	<div class="col-sm-4">
 	 	<%= t.text_field :name , class: "form-control" %>
-	</div>
+	</div><br>
 	<%= label_tag :Edit_Category_and_Subcategory , nil , class: "col-sm-2 col-sm-label" %>
 	<div class="col-sm-2">
 		<%= select_tag(:category , options_from_collection_for_select( Category.all , :id , :name, @cat.id) , { class: "auto-update"} ) %>
-	</div>
+	</div><br>
 	<div class="col-sm-2">
 		<%= select_tag(:subcategory , options_from_collection_for_select(@subcat, :id , :name , @brand.subcategory.id ), { class: "sub-update"} ) %>
 	</div>
+</div><br>
+<%= t.submit "Update" , class: "btn btn-success" %>
+<% end %>
 </div>
- <%= t.submit "Update" , class: "btn btn-success" %>
- <% end %>

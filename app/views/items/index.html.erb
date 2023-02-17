@@ -1,28 +1,15 @@
-<div class="row">
+<div class="row grid">
 	<div class="col-sm-3 sidebar">
-	<div data-controller="subcategory">
-		<%= form_tag items_path , { method: "get", remote: true, id: "buga"} do %>
-		<p>Category:<br>
-		<%= select_tag( :category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update", data: {controller: "subcategories"}} ) %></p>
-		<p><div class="auto-update" id="category_subcategories_list"></div></p>
-		<p><div class="auto-update" id="subcategory_brands_list"></div></p>
+		<%= form_tag items_path , method: "get" do %>
+		<br><p> Filter </p><br>
+		<p class="category-group">Category:<br>
+		<%= select_tag( :category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update index", data: {controller: "subcategories"}} ) %></p>
+		<p><div class="auto-update index" id="category_subcategories_list"></div></p>
+		<p><div class="auto-update index" id="subcategory_brands_list"></div></p>
+		<%= submit_tag("GO", class: "item-go-btn") %>
 		<% end %>
 	</div>
-
-		<ul class="nav nav-pills nav-stacked">
-			<% if logged_in?  %> 
-			<li> <%= link_to "My Account" , current_user , class: "nav-link" %> </li>
-			<li> <%= link_to "My cart" , carts_path , class: "nav-link" %> </li>
-			<li> <%= link_to "Admin Dashboard" , admin_index_path, method: "get" , class: "nav-link" if is_admin? %></li>
-			<% else %>
-			<li> <%= link_to "Login", new_session_path %></li>
-			<% end %>
-
-		</ul>
-	</div>
-
-	
-	<div class="updated3 col-sm-offset-3">
+	<div class="updated3">
 		<h5><%= alert %> </h5>
 		<%= render 'list' %>
 	</div>
