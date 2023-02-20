@@ -1,6 +1,8 @@
 
 Rails.application.routes.draw do
-
+  get 'cart', to: 'cart#show'
+  post 'cart/add'
+  post 'cart/remove'
   resources :brands , only: [:index , :edit, :update ,:new ,:create , :destroy] do
     collection do
       get :subcategory
@@ -20,17 +22,6 @@ Rails.application.routes.draw do
       get :fetch_subcategory_brands
     end
   end
- 
-  get 'carts/:id' => "carts#show", as: "cart"
-delete 'carts/:id' => "carts#destroy"
-
-post 'ordered_items/:id/add' => "ordered_items#add_quantity", as: "ordered_item_add"
-post 'ordered_items/:id/reduce' => "ordered_items#reduce_quantity", as: "ordered_item_reduce"
-post 'ordered_items' => "ordered_items#create"
-get 'ordered_items/:id' => "ordered_items#show", as: "ordered_item"
-delete 'ordered_items/:id' => "ordered_items#destroy"
-
-  resources :orders
   root 'items#index'
 
   resources :sessions , only: [:new , :create , :destroy]

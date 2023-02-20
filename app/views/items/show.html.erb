@@ -6,6 +6,13 @@
 		</h3><br>
 		<p class= "col-sm-offset-4 item-element">Price : <%= @my_item.price %></p> 
 		<p class= "col-sm-offset-4 item-element">Description: <%= @my_item.description %></p><br><br>
-		<p class= "col-sm-offset-4"><%= link_to "Add to Cart" , ordered_items_path(@my_item) , method: :get %></p>
+
+		<%= form_with(url: cart_add_path) do |f| %>
+			<%= f.hidden_field :id, value: @my_item.id %>
+			<%= f.number_field :quantity, value: 0, min: 1 %><br>
+			<%= button_tag type: 'submit', class: "edit-button" do %>
+				<i class="fa-solid fa-cart-plus"></i>
+			<% end %>
+		<% end %>
 	</section>
 </div>

@@ -12,6 +12,7 @@
         <li class='nav-item'><%= link_to 'Home', root_path, class: 'nav-link' %></li>
         <% if logged_in?  %>
           <li class='nav-item'><%= link_to 'MyAccount', current_user, class: 'nav-link' %></li> 
+          <li class='nav-item'><%= link_to 'My Cart', cart_path, class: 'nav-link' %></li> 
           <li class='nav-item'><%= link_to 'Admin', admin_index_path, class: 'nav-link' if is_admin? %></li> 
           <li class='nav-item'><%= link_to 'LogOut', logout_path, class: 'nav-link' %></li>
         <% else %>

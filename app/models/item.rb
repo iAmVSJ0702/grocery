@@ -5,8 +5,9 @@ class Item < ApplicationRecord
   belongs_to :brand, optional: true
   accepts_nested_attributes_for :brand
   has_and_belongs_to_many :users
-  has_many :carts , dependent: :destroy
   has_many :OrderedItems , dependent: :nullify
+  has_many :orderables
+  has_many :carts , through: :orderables
 
   def getbrand
    	Brand.find_by(id: self[:brand_id]) unless self[:brand_id].nil?

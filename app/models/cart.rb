@@ -1,6 +1,9 @@
 class Cart < ApplicationRecord
-  belongs_to :user , optional: true
-  belongs_to :item , optional: true
+  has_many :orderables
+  has_many :line_items, dependent: :destroy
+  has_many :items, through: :orderables
 
-  scope :quantity , -> (id_item, id_user){ where("item_id=? and user_id=?","#{id_item}","#{id_user}").count }
+  def total
+    orderables.to_a.sum { |orderable| orderable.total }
+  end
 end

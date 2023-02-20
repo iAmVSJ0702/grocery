@@ -61,10 +61,6 @@ class UsersController < ApplicationController
   	  end
   end
 
-  def show
-    @orders = current_user.orders.order(id: :desc).all 
-  end
-
   def destroy
   	if @my_user.destroy
   		flash[:notice]= "Successfully deleted"

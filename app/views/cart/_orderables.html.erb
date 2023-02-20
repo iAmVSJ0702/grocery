@@ -1,0 +1,30 @@
+<div class="updated-cart">
+<% @cart.orderables.each do |orderable| %>
+  <% item = orderable.item %>
+  <div class="normal" style="width: 20rem;">
+    <div id="<%= "cart-#{item.id}"%>" class="card-body list">
+      <strong>Name:</strong>
+      <%= item.title %><br>
+      <strong>Description:</strong>
+      <%= item.description %><br>
+      <strong>Price:</strong>
+      <%= item.price %><br><br>
+      <%= form_with(url: cart_add_path) do |f| %>
+        <%= f.hidden_field :id, value: item.id %>
+        <%= f.number_field :quantity, value: orderable.quantity, min: 0 %><br>
+        <%= button_tag type: 'submit', class: "button " do %>
+				<i class="fa-solid fa-cart-plus"></i>
+			<% end %>
+      <% end %>
+      <%= form_with(url: cart_remove_path) do |f| %>
+        <%= f.hidden_field :id, value: orderable.id %>
+        <%= button_tag type: 'submit', class: "button " do %>
+				<i class="fa-solid fa-trash-can"></i>
+			<% end %>
+      <% end %><br>
+      <strong>Total:</strong>
+      <%= orderable.total %>
+    </div>
+    </div>
+<% end %>
+</div>

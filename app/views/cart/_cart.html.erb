@@ -1,0 +1,7 @@
+<%=turbo_frame_tag "cart" do%>
+  <% if @cart.orderables.count > 0 %>
+    <%= render "cart/orderables" %>
+  <% else %>
+    <p>Your Cart is empty</p>
+  <% end %>
+<% end %>

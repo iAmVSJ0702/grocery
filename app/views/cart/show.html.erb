@@ -1,0 +1,12 @@
+<div class="center">
+<%= notice %>
+<h1 class="text-center">Your Cart</h1><br><br>
+
+<%= render "cart/cart"%><br><b>
+<% @cart.orderables.each do |orderable| %>
+  <% item = orderable.item %>
+  <p><%= item.title %> * <%= orderable.quantity %> = ₹<%= item.price * orderable.quantity %></p>
+<% end %><br>
+<p>Total is ₹<%= @cart.total %> </p>
+</b>
+</div>

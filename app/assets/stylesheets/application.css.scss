@@ -6,6 +6,11 @@
   text-decoration: none;
 }
 
+.updated-cart{
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(500px, 1fr) );
+}
+
 .card-title.title{
   font-size:x-large;
 }
@@ -117,7 +122,8 @@ th, td {
   background-color: #589300;
 }
 
-.fa-solid.fa-pen-to-square, .fa-solid.fa-bars,.fa-solid.fa-cart-shopping{
+.edit-button{
+  border: none;
  margin: 30px;
  font-size: 40px;
 }
@@ -157,10 +163,10 @@ th, td {
   margin-right: 5px;
 }
 
-a, .logo .fa-solid, .nav-toggle-lable .fa-solid {
+a,.fa-solid {
   color: #84c225;
 }
-a:hover, .logo .fa-solid:hover, .nav-toggle-lable .fa-solid:hover, .menu li a.active {
+a:hover,.fa-solid:hover, .menu li a.active {
   color: #589300;
 }
 
@@ -206,7 +212,6 @@ a:hover, .logo .fa-solid:hover, .nav-toggle-lable .fa-solid:hover, .menu li a.ac
 	border-radius: 4px;
 	max-width: 400px;
 	margin: 10% auto;
-	height: 100px;
 	position: relative;
 	padding: 34px;
 	color: #444;
