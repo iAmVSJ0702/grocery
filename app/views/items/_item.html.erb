@@ -6,6 +6,7 @@
     <%= item.description %>
     <strong>Price:</strong>
     <%= item.price %>
+    
     <%= form_with(url: cart_add_path) do |f| %>
       <%= f.hidden_field :id, value: item.id %>
       <%= f.number_field :quantity, value: 0, min: 1 %>
