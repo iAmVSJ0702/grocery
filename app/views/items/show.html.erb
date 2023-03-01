@@ -1,11 +1,11 @@
 <div class="row">
-	<h2>Welcome to Details Page </h2><br>
 	<section>
 		<h3 class="text-center">
 			<%= @my_item.title %>
 		</h3><br>
-		<p class= "col-sm-offset-4 item-element">Price : <%= @my_item.price %></p> 
-		<p class= "col-sm-offset-4 item-element">Description: <%= @my_item.description %></p><br><br>
+		<%= image_tag @my_item.avatar, style: "width: auto; height:200px" , class: "pull-left col-sm-3"  %>
+		<p class= "col-sm-offset-4 item-element">Price : <%= @my_item.price %></p> <br>
+		<p class= "col-sm-offset-4 item-element">Description: <div class="des"><%= @my_item.description %></div></p><br><br>
 
 		<%= form_with(url: cart_add_path) do |f| %>
 			<%= f.hidden_field :id, value: @my_item.id %>

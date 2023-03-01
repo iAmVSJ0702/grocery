@@ -1,11 +1,16 @@
 <div class="row grid">
 	<div class="col-sm-3 sidebar">
 		<%= form_tag items_path , method: "get" do %>
-		<br><p> Filter </p><br>
+		<br><p class="filter-text"> Filter </p><br>
 		<p class="category-group">Category:<br>
 		<%= select_tag( :category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update index", data: {controller: "subcategories"}} ) %></p>
 		<p><div class="auto-update index" id="category_subcategories_list"></div></p>
 		<p><div class="auto-update index" id="subcategory_brands_list"></div></p>
+		<%= submit_tag("GO", class: "item-go-btn") %>
+		<% end %><br>
+		<%= form_tag items_path , method: "get" do %>
+		<p class="category-group">Brand:<br>
+		<%= select_tag( :brand1 , options_from_collection_for_select( Brand.all , :id , :name) , { prompt: "Select Brand", class: "auto-update index"} ) %></p>
 		<%= submit_tag("GO", class: "item-go-btn") %>
 		<% end %>
 	</div>

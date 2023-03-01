@@ -20,7 +20,7 @@
     	<% @subCatAll.each do |subcat| %>
         <tr>
           <td scope="row"><%= subcat[:name] %></td>
-          <td> <%= link_to "Edit" , edit_subcategory_path(subcat.id) %> /<%= link_to "Destroy" , subcategory_path(subcat), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+          <td> <%= link_to icon('fa-solid', 'pen') , edit_subcategory_path(subcat.id) %> /<%= link_to icon('fa-solid', 'trash') , subcategory_path(subcat), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
         </tr>
       <% end %>
     </tbody>

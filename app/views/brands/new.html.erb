@@ -22,7 +22,7 @@
     	<% @brands.each do |brand| %>
         <tr>
           <td scope="row"><%= brand[:name] %></td>
-          <td><%= link_to "Edit" , edit_brand_path(brand.id) , method: "get" %> / <%= link_to "Destroy" , brand_path(brand) , data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%></td>
+          <td><%= link_to icon('fa-solid', 'pen') , edit_brand_path(brand.id) , method: "get" %> / <%= link_to icon('fa-solid', 'trash') , brand_path(brand) , data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%></td>
         </tr>
       <% end %>
     </tbody>

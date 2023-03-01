@@ -9,7 +9,7 @@
 			<%= text_field_tag :title , nil ,class: "form-control" %>
 		</div>
 	</div> 
-		<div class="field form-group row">
+	<div class="field form-group row">
 		<%= label_tag :price , nil , class: "col-sm-2 col-form-label" %>
 		<div class="col-sm-6">
 			<%= text_field_tag :price, nil , class: "form-control" %>
@@ -21,7 +21,9 @@
 			<%= text_area_tag :description , nil , class: "form-control" %>
 		</div>
 	</div>
-		<div class="field form-group row" >
+	<div class="field form-group row" >
+		<%= label_tag :avatar %>
+		<%= file_field_tag :avatar , class: "col-sm-6" %>
 	</div>
 
 	<div class="field dorm-group row">

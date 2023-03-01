@@ -1,7 +1,6 @@
 <div class="center"><br>
-  <h3 class="text-center add-element">Category</h3>
+  <h3 class="text-center">Add new category</h3>
   <h5><%= notice %></h5><br>
-  <h3>Add new category </h3>
   <%= form_for(@newCat) do |f| %>
   	<div class= "field" ><br>
   		<label>Name:</label><br>
@@ -20,7 +19,7 @@
       <% @allCat.each do |cat| %>
         <tr>
           <td scope="row"><%= cat[:name] %></td>
-          <td> <%=link_to "Edit" , edit_category_path(cat.id) %> / <%= link_to "Destroy" , category_path(cat), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+          <td> <%=link_to icon('fa-solid', 'pen') , edit_category_path(cat.id) %> / <%= link_to icon('fa-solid', 'trash') , category_path(cat), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
         </tr>
       <% end %>
     </tbody>

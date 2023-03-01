@@ -9,6 +9,8 @@ class Item < ApplicationRecord
   has_many :orderables
   has_many :carts , through: :orderables
 
+  has_one_attached :avatar, :dependent => :destroy
+
   def getbrand
    	Brand.find_by(id: self[:brand_id]) unless self[:brand_id].nil?
   end
