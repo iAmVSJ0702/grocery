@@ -148,11 +148,11 @@ th, td {
   color: rgb(131, 0, 0);
 }
 
-.fa-solid.fa-pen{
+.fa-solid.fa-pen, .fa-solid.fa-person-circle-plus{
   color: blue;
 }
 
-.fa-solid.fa-pen:hover{
+.fa-solid.fa-pen:hover, .fa-solid.fa-person-circle-plus:hover{
   color: rgb(0, 0, 131);
 }
 
@@ -254,7 +254,7 @@ a:hover,.fa-solid:hover, .menu li a.active {
   font-size:medium;
 }
 
-.add-user .fa-solid.fa-square-plus{
+.add-user .fa-solid.fa-person-circle-plus{
   font-size: 50px;
 }
 
