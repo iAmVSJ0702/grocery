@@ -62,11 +62,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-  	if @my_user.destroy
-  		flash[:notice]= "Successfully deleted"
-  	else
-  		flash[:notice]= "Not Deleted"
-  	end
+    @user = User.find(params[:id])
+    @user.destroy
     redirect_to root_path, status: :see_other
   end
 

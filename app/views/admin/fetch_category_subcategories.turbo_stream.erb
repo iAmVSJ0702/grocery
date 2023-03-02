@@ -3,7 +3,7 @@
         <div class="auto-update" id="category_subcategories_list">
         <li>
             <label class="auto-update mb-2 mt-3">Subcategories:<br></label>
-            <%= select_tag(:subcategory , options_from_collection_for_select( @subcategories.all , :id , :name) , { prompt: "Select Category" , class: "auto-update"} ) %>
+            <%= select_tag(:subcategory , options_from_collection_for_select( @subcategories.all , :id , :name) , { prompt: "Select Subcategory" , class: "auto-update"} ) %>
         </li>
         </div>
     <% end %>

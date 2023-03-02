@@ -10,8 +10,6 @@ class User < ApplicationRecord
 	validates :phone , numericality: { message: "Integer Only" }
 	validates :phone , length: { minimum: 8 , maximum: 10 , message: "not valid phone number"}
 	has_and_belongs_to_many :items , dependent: :nullify
-	has_many :carts , dependent: :destroy
-	has_many :orders , dependent: :destroy
 
 	def my_cart_items
 		item_ids = carts.all.pluck :item_id
