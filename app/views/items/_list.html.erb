@@ -3,7 +3,7 @@
 		<section class="col-sm-4 col-md-3">
 			<div class="normal" style="width: 20rem;">
 	  		<div class="card-body list">
-					<%= link_to (image_tag item.avatar, style: "width: auto; height:50px"), item %>
+					<%= link_to (image_tag item.avatar, class: "list-image"), item %>
 	    		<h4 class="card-title title"><%= item.title %></h4><br>
 	    		<p class="card-text">The price is : <%= item.price %> </p><br>
 	    		<%= link_to icon('fa-solid', 'eye') , item , class: "btn" %>
