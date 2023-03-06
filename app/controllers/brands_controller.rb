@@ -6,6 +6,21 @@ class BrandsController < ApplicationController
   	end
   end
 
+  def create
+    subCatId = params[:brand][:subcategory]
+    @subCat = Subcategory.find_by(id: subCatId)
+    catId = @subCat.category.id
+    brand = params[:brand][:name]
+    @newBrand = @subCat.brands.create(name: brand)
+    if @newBrand.save
+      flash[:notice] = "Brand added"
+      redirect_to action: "new" , subcategory: subCatId , category: catId
+    else
+      flash[:notice] = "Brands already exist/Empty field"
+      redirect_to action: "new" , subcategory: subCatId , category: catId
+    end
+  end
+
   def new
     unless params[:category] == "" || params[:subcategory] == "" 
       @newBrand = Brand.new
@@ -40,21 +55,6 @@ class BrandsController < ApplicationController
     end
   end
 
-  def create
-    subCatId = params[:brand][:subcategory]
-    @subCat = Subcategory.find_by(id: subCatId)
-    catId = @subCat.category.id
-    brand = params[:brand][:name]
-    @newBrand = @subCat.brands.create(name: brand)
-    if @newBrand.save
-      flash[:notice] = "Brand added"
-      redirect_to action: "new" , subcategory: subCatId , category: catId
-    else
-      flash[:notice] = "Brands already exist/Empty field"
-      redirect_to action: "new" , subcategory: subCatId , category: catId
-    end
-  end
-
   def destroy
     brandId = params[:id]
     @deleteBrand = Brand.find_by(id: brandId)
@@ -66,7 +66,7 @@ class BrandsController < ApplicationController
 
   def subcategory
     @target = params[:target]
-    @subcategory = Subcategory.find_by(id: params[:subcategory]).invert
+    @subcategory = Subcategory.find_by(id: params[:subcategory])
     respond_to do |format|
       format.turbo_stream
     end
