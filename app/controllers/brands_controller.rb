@@ -66,7 +66,7 @@ class BrandsController < ApplicationController
 
   def subcategory
     @target = params[:target]
-    @subcategory = Subcategory.find_by(id: params[:subcategory])
+    @subcategory = Subcategory.find_by(id: params[:subcategory])  
     respond_to do |format|
       format.turbo_stream
     end
