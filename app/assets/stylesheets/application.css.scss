@@ -190,15 +190,20 @@ a:hover,.fa-solid:hover, .menu li a.active {
 .grid-container {
   display: grid;
   grid-template-columns: auto auto;
-  margin-left: 100px;
-  margin-right: 100px;
-  row-gap: 50px;
-  box-shadow: 0 0 40px lighten(#000, 60%);
+  justify-content: center;
 }
 .grid-item {
+  border: #000 solid;
+  box-shadow: 5px 5px #454742;
+  margin: 20px;
   padding: 20px;
   font-size: 20px;
   text-align: center;
+  transition: 0.4s;
+}
+
+.grid-item:hover{
+  box-shadow: 10px 10px #242721;
 }
 
 .field{
