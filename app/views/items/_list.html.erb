@@ -1,7 +1,7 @@
 <div class="update-body">
 	<% @all_items.each do |item| %>
 		<section class="col-sm-4 col-md-3">
-			<div class="normal" style="width: 20rem;">
+			<div class="normal">
 	  		<div class="card-body list">
 					<%= link_to (image_tag item.avatar, class: "list-image"), item %>
 	    		<h4 class="card-title title"><%= item.title %></h4><br>
