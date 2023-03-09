@@ -263,6 +263,17 @@ a:hover,.fa-solid:hover, .menu li a.active {
   height: 150px; 
 }
 
+.about-us-card{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: #dbffa4;
+  margin: 15%;
+  padding: 35px;
+  margin-top: 45px;
+  margin-bottom: 20px;
+  border: #000 solid;
+  box-shadow: 10px 10px #454742;
+}
+
 @media (max-width: 1000px) {
   .nav-toggle-lable {
       display: block;
