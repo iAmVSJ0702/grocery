@@ -21,6 +21,6 @@ class CartController < ApplicationController
 
   def remove
     Orderable.find_by(id: params[:id]).destroy
-    redirect_to root_path
+    redirect_to cart_path
   end
 end

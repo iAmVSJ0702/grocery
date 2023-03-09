@@ -8,7 +8,7 @@
 
 .updated-cart{
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(500px, 1fr) );
+  grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
 }
 
 .card-title.title{
@@ -229,6 +229,16 @@ a:hover,.fa-solid:hover, .menu li a.active {
 	margin: 10% auto;
 	padding: 34px;
   box-shadow: 0 0 40px lighten(#000, 60%);
+}
+
+.updated-cart .card-body.list{
+  margin: 0;
+  padding: 10px;
+}
+
+.updated-cart .normal{
+  height: auto;
+  margin-bottom: 20px;
 }
 
 .card-body.list:hover{
