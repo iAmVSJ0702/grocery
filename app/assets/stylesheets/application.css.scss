@@ -254,8 +254,7 @@ a:hover,.fa-solid:hover, .menu li a.active {
   height: 150px; 
 }
 
-.about-us-card{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.about-us-card, .your-profile-card{
   background-color: #dbffa4;
   margin: 15%;
   padding: 35px;
@@ -263,6 +262,10 @@ a:hover,.fa-solid:hover, .menu li a.active {
   margin-bottom: 20px;
   border: #000 solid;
   box-shadow: 10px 10px #454742;
+}
+
+.about-us-card{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .filter-text{
