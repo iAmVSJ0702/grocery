@@ -282,6 +282,39 @@ a:hover,.fa-solid:hover, .menu li a.active {
   margin-top: 10%;
 }
 
+.item-grid{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 90.5vh;
+}
+
+.item-element{
+  text-align: left;
+}
+.item-element.image{
+  background-color: #d8ff9e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-element.image img{
+  width: auto; 
+  height: 300px;
+}
+
+.item-element.body{
+  padding: 50px;
+}
+
+.item-title{
+  font-size:400%;
+}
+
+.item-element.description{
+  font-size: medium;
+}
+
 @media (max-width: 1000px) {
   .nav-toggle-lable {
       display: block;
