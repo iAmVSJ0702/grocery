@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-	skip_before_action :ensure_login , only: [:new , :create]
+	skip_before_action :ensure_signin , only: [:new , :create]
   skip_before_action :ensure_admin
   skip_before_action :verify_authenticity_token , only: [:destroy]
   
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     		session[:user_id] = myUser.id
     		redirect_to root_path 
     	else
-    		redirect_to login_path , notice: "Invalid password/email"
+    		render :new, status: :unprocessable_entity
     	end
     else
       redirect_to root_path , alert: "Already Logged in as #{current_user.name}"
@@ -29,10 +29,10 @@ class SessionsController < ApplicationController
 
   def destroy
     if session[:user_id].nil?
-      redirect_to login_path , notice: "You have already been logged out"
+      redirect_to signin_path , notice: "You have already been logged out"
     else
     	reset_session
-    	redirect_to login_path , notice: "You have been logged out successfully"
+    	redirect_to signin_path , notice: "You have been logged out successfully"
     end
   end
 end

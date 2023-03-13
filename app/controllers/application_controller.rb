@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :ensure_login
+  before_action :ensure_signin
   before_action :ensure_admin
   before_action :set_render_cart
   before_action :initialize_cart
@@ -20,8 +20,8 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-  	def ensure_login
-  		redirect_to login_path unless session[:user_id]
+  	def ensure_signin
+  		redirect_to signin_path unless session[:user_id]
   	end
 
     def ensure_admin

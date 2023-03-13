@@ -15,10 +15,10 @@
           <%= link_to 'MyAccount', current_user, class: 'nav-link nav-item' %>
           <%= link_to 'My Cart', cart_path, class: 'nav-link nav-item' %>
           <%= link_to 'Admin', admin_index_path, class: 'nav-link nav-item' if is_admin? %>
-          <%= link_to 'LogOut', logout_path, class: 'nav-link nav-item' %>
+          <%= link_to 'Signout', signout_path, class: 'nav-link nav-item' %>
         <% else %>
-          <%= link_to 'LogIn', login_path, class: 'nav-link nav-item' %>
-          <%= link_to 'SignIn', new_user_path, class: 'nav-link nav-item' %>
+          <%= link_to 'SignIn', signin_path, class: 'nav-link nav-item' %>
+          <%= link_to 'SignUp', new_user_path, class: 'nav-link nav-item' %>
         <% end %>
       </ul>
     </nav>

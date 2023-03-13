@@ -25,8 +25,8 @@ Rails.application.routes.draw do
   root 'items#index'
 
   resources :sessions , only: [:new , :create , :destroy]
-  get "/login" => "sessions#new" , as: "login"
-  get "/logout" => "sessions#destroy" , as: "logout"
+  get "/signin" => "sessions#new" , as: "signin"
+  get "/signout" => "sessions#destroy" , as: "signout"
   
   get "/aboutus" => "welcome#index" , as: "about-us"
   get "/item/show" => "items#show" , as: "show"

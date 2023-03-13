@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :set_post , only: [:destroy]
-  skip_before_action :ensure_login , only: [:new , :create]
+  skip_before_action :ensure_signin , only: [:new , :create]
   skip_before_action :ensure_admin , only: [:new , :create , :show , :edit , :update]
 
 	def index
@@ -54,10 +54,8 @@ class UsersController < ApplicationController
   		    session[:user_id] = acc_type.id
           redirect_to root_path , notice: "logged in successfully"
         end
-     	elsif user_params.present?
-  	  	redirect_to new_user_path, notice: "fields cannot be empty"
       else 
-        redirect_to new_user_path, notice: "something went wrong"
+        render :new, status: :unprocessable_entity
   	  end
   end
 
@@ -70,7 +68,7 @@ class UsersController < ApplicationController
   private 
 
   	def user_params
-  		params.require(:user).permit(:name,:email,:address,:phone,:password)
+  		params.require(:user).permit(:name,:email,:address,:phone,:password,:password_confirmation)
   	end
 
     def user_edit_params

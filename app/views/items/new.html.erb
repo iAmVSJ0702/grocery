@@ -3,7 +3,7 @@
 
 <%= form_tag items_path , { method: "post", id: "buga" , multipart: true }  do %>
 	<div class="field form-group row"><br>
-		<h3 class="text-center">Add new Item </h3>
+		<h3 class="text-center">Add New Item </h3>
 		<%= label_tag :title , nil ,class: "col-sm-2 col-form-label"  %>
 		<div class="col-sm-6">
 			<%= text_field_tag :title , nil ,class: "form-control" %>
@@ -13,7 +13,7 @@
 		<%= label_tag :price , nil , class: "col-sm-2 col-form-label" %>
 		<div class="col-sm-6">
 			<%= text_field_tag :price, nil , class: "form-control" %>
-		</div>
+		</div> 
 	</div> 
 	<div class="field form-group row">
 		<%= label_tag :description , nil , class: "col-sm-2 col-form-label" %>

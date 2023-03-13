@@ -320,6 +320,11 @@ a:hover,.fa-solid:hover, .menu li a.active {
   font-size: medium;
 }
 
+.error{
+  color: red;
+  font-size: small;
+}
+
 @media (max-width: 1000px) {
   .nav-toggle-lable {
       display: block;
@@ -343,6 +348,28 @@ a:hover,.fa-solid:hover, .menu li a.active {
   }
   .menu li {
       margin: 40px 0;
+  }
+}
+
+
+@media (max-width: 1000px) {
+  .nav-toggle-lable {
+      display: block;
+  }
+  .nav{
+    padding: 10px 0px;
+  }
+  .menu {
+      display: none;
+  }
+  .nav-toggle:checked ~ .menu {
+      display:flex;
+      position: fixed;
+      flex-direction: column;
+      margin-top: 240px;
+      width:100%;
+      background-color: #454742;
+      text-align: center;
   }
 }
 

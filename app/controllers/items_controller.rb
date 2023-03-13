@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 	before_action :set_post , only: [:show , :edit , :update , :destroy]
-  skip_before_action :ensure_login
+  skip_before_action :ensure_signin
   skip_before_action :ensure_admin
   
   def index
