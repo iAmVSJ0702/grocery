@@ -5,8 +5,8 @@ class CategoriesController < ApplicationController
   end
 
   def create
-  	@createCat = Category.new(category_params)
-  	if @createCat.save
+  	@newCat = Category.new(category_params)
+  	if @newCat.save
   		redirect_to new_category_path , notice: "Successfully added category"
   	else
   		redirect_to new_category_path , notice: "Category Already exists/Blank Field"

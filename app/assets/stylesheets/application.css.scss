@@ -46,6 +46,10 @@ th, td {
   text-align: center;
 }
 
+.field .text-center{
+  font-weight: bolder;
+}
+
 .form-group.row{
   font-size: large;
 }
@@ -207,7 +211,6 @@ a:hover,.fa-solid:hover, .menu li a.active {
 }
 
 .field{
-  font-weight: bolder;
   font-size:xx-large;
 }
 
@@ -320,9 +323,13 @@ a:hover,.fa-solid:hover, .menu li a.active {
   font-size: medium;
 }
 
-.error{
+.error, .notice{
   color: red;
   font-size: small;
+}
+
+.notice{
+  text-align: center;
 }
 
 @media (max-width: 1000px) {

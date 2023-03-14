@@ -1,11 +1,11 @@
 <div class="center">
-  <h5><%= notice %></h5><br>
   <h3 class="text-center add-element">Add new Subcategory for <%= @catname %> </h3><br>
   <%= form_for(@newSubCat) do |f| %>
   	<div class= "field" >
       <%= f.hidden_field :category ,value: @catName[:id] %>
   		<label>Name:</label><br>
-  		<%= f.text_field :name %><br><br>
+  		<%= f.text_field :name %>
+      <div class="notice"><%= notice %></div><br>
   		<%= f.submit :Create , class: "btn btn-success"  %><br><br><br>
   	</div>
   <% end %><br><br>

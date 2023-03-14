@@ -38,27 +38,27 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @newItem = Item.new
   end
   
   def create
-    @title = params[:title]
-    @price = params[:price]
-    @desc = params[:description]
-    @av = params[:avatar]
-    if @title=="" || @price=="" || @desc==""  || params[:category]=="" || params[:subcategory]=="" || params[:brand]==""
-      redirect_to new_item_path , alert: "fields cannot be empty"
+    @cat = params[:category]
+    @subcat = params[:subcategory]
+    @brand = params[:brand]
+    if @cat.nil? || @cat == ""
+      redirect_to new_item_path, notice: "Category can't be empty"
+    elsif @subcat.nil? || @subcat == ""
+      redirect_to new_item_path, notice: "Subcategory can't be empty"
+    elsif @brand.nil? || @brand == ""
+      redirect_to new_item_path, notice: "Brand can't be empty"
     else
-      @category = Category.find_by(id: params[:category])
-      @subcat = @category.subcategories.find_by(id: params[:subcategory])
-      @brand = @subcat.brands.find_by(id: params[:brand])
-      @newItem =  @brand.items.create title: @title , price: @price , description: @desc , avatar: @av
+      @newItem =  Category.find_by(id: params[:category]).subcategories.find_by(id: params[:subcategory]).brands.find_by(id: params[:brand]).items.create title: params[:title] , price: params[:price] , description: params[:description] , avatar: params[:avatar]
       if @newItem.save 
         redirect_to root_path , notice: "Success for new item"
       else
-        redirect_to new_item_path , notice: "Item was not added. Price must be a number"
-      end    
+        render :new, status: :unprocessable_entity
+      end
     end
-
   end
 
   def show

@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
 
   validates :title , :price , presence: true
-  validates :price , numericality: { message: "Integer Only"}
+  validates :price , numericality: true
   belongs_to :brand, optional: true
   accepts_nested_attributes_for :brand
   has_and_belongs_to_many :users

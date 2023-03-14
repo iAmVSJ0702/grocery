@@ -3,6 +3,7 @@ class CartController < ApplicationController
 
   def show
     @render_cart = false
+    @orders = @cart.orderables.all 
   end
 
   def add
