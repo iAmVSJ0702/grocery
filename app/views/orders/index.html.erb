@@ -1,12 +1,21 @@
-<h2>All Orders</h2>
+<%= notice %>
+<h2>All Orders</h2><br>
 
 <% @orders.each do |order| %>
+  <% if @user.email == order.email %>
   <p>Name: <%= order.name %></p>
-  <p>Email: <%= order.email %></p>
+  <p>Shipping Address: <%= order.address %></p>
   <p>Line Items: </p>
   <ul>
-    <% order.line_items.each do |item| %>
-    <li><%= item.quantity %> x <%= item.product.name %></li>
+    <% order.ordered_items.each do |item| %>
+      <li><%= item.quantity %> x <%= item.item.title %></li>
     <% end %>
   </ul>
-<% end
+  <li>
+  <%= link_to "Show", order_path(order.id)%>
+  <%= link_to "Destroy", order_path(order.id), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+  <br><br><br><% end %>
+<% end %>

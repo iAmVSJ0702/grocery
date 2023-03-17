@@ -161,6 +161,14 @@ th, td {
   color: rgb(0, 0, 131);
 }
 
+.fa-cart-plus{
+  color:#84c225;
+}
+
+.fa-cart-plus:hover{
+  color: #589300;
+}
+
 .header{
   background-color: #454742;
   font-size: 24px;
@@ -184,10 +192,10 @@ th, td {
   padding-left: 0px;
 }
 
-a,.fa-solid {
+a{
   color: #84c225;
 }
-a:hover,.fa-solid:hover, .menu li a.active {
+a:hover, .menu li a.active {
   color: #589300;
 }
 
@@ -331,6 +339,25 @@ a:hover,.fa-solid:hover, .menu li a.active {
 .notice{
   text-align: center;
 }
+
+.checkout-link {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.checkout-link:hover {
+  background-color: #3e8e41;
+  color: white;
+}
+
 
 @media (max-width: 1000px) {
   .nav-toggle-lable {

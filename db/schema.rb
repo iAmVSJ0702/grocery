@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_28_074313) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_16_080732) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -78,7 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_074313) do
   create_table "line_items", force: :cascade do |t|
     t.integer "quantity"
     t.integer "product_id"
-    t.integer "cart_id"
     t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -90,8 +89,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_074313) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order_id"
     t.index ["cart_id"], name: "index_orderables_on_cart_id"
     t.index ["item_id"], name: "index_orderables_on_item_id"
+    t.index ["order_id"], name: "index_orderables_on_order_id"
   end
 
   create_table "ordered_items", force: :cascade do |t|
@@ -102,6 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_074313) do
     t.integer "order_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity"
     t.index ["item_id"], name: "index_ordered_items_on_item_id"
     t.index ["order_id"], name: "index_ordered_items_on_order_id"
   end
@@ -112,6 +114,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_074313) do
     t.text "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "cart_id", null: false
+    t.string "phone"
+    t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
   create_table "subcategories", force: :cascade do |t|
@@ -141,7 +146,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_074313) do
   add_foreign_key "items_users", "users"
   add_foreign_key "orderables", "carts"
   add_foreign_key "orderables", "items"
+  add_foreign_key "orderables", "orders"
   add_foreign_key "ordered_items", "items"
   add_foreign_key "ordered_items", "orders"
+  add_foreign_key "orders", "carts"
   add_foreign_key "subcategories", "categories"
 end

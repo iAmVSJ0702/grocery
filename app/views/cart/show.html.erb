@@ -1,44 +1,38 @@
 <div class="center">
-<%= notice %>
-<h1 class="text-center">My Cart</h1><br><br>
-
-<%=turbo_frame_tag "cart" do%>
-  <% if @cart.orderables.count > 0 %>
-    <div class="updated-cart">
-      <% @cart.orderables.each do |orderable| %>
-        <% item = orderable.item %>
-          <div class="normal" style="width: 20rem;">
-            <div id="<%= "cart-#{item.id}"%>" class="card-body list">
-              <%= image_tag item.avatar, style: "width: auto; height: 150px" %><br>
-              <strong>Name:</strong>
-              <%= item.title %><br>
-              <strong>Price:</strong>
-              <%= item.price %><br><br>
+  <%= notice %>
+  <h1 class="text-center">My Cart</h1><br><br>
+  <%=turbo_frame_tag "cart" do%>
+    <% if @cart.orderables.count > 0 %>
+      <div class="updated-cart">
+        <% @cart.orderables.each do |orderable| %>
+          <% item = orderable.item %>
+            <div class="normal" style="width: 20rem;">
+              <div id="<%= "cart-#{item.id}"%>" class="card-body list">
+                <%= image_tag item.avatar, style: "width: auto; height: 150px" %><br>
+                <strong>Name:</strong>
+                <%= item.title %><br>
+                <strong>Price:</strong>
+                <%= item.price %><br><br>
                 <%= form_with(url: cart_add_path) do |f| %>
                   <%= f.hidden_field :id, value: item.id %>
                   <%= f.number_field :quantity, value: orderable.quantity, min: 0, onchange: "this.form.submit()" %><br>
-              <% end %>
-              <%= form_with(url: cart_remove_path) do |f| %>
-                <%= f.hidden_field :id, value: orderable.id %>
-                <%= button_tag type: 'submit', class: "button" do %>
-        				<i class="fa-solid fa-trash-can"></i>
-        			<% end %>
-              <% end %><br>
-              <strong>Total:</strong>
-              <%= orderable.total %>
+                <% end %>
+                <%= form_with(url: cart_remove_path) do |f| %>
+                  <%= f.hidden_field :id, value: orderable.id %>
+                  <%= button_tag type: 'submit', class: "button" do %>
+          				  <i class="fa-solid fa-trash-can"></i>
+          			  <% end %>
+                <% end %><br>
+                <strong>Total:</strong>
+                <%= orderable.total %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
       </div>
-  <% else %>
-    <p>Cart is empty</p>
+    <% else %>
+      <p>Cart is empty</p>
+    <% end %><br>
+    <b><p>Total is ₹<%= @cart.total %> </p></b><br>
   <% end %>
-  <br><b>
-<% @cart.orderables.each do |orderable| %>
-  <% item = orderable.item %>
-  <p><%= item.title %> * <%= orderable.quantity %> = ₹<%= item.price * orderable.quantity %></p>
-<% end %><br>
-<p>Total is ₹<%= @cart.total %> </p>
-</b>
-<% end %>
+  <%= link_to icon('fa-solid', 'bag-shopping', 'Checkout'), new_order_path, class: 'checkout-link' %>
 </div>

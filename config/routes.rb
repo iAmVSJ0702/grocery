@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       get :fetch_subcategory_brands
     end
   end
+  resources :orderables
+  resources :orders
   root 'items#index'
 
   resources :sessions , only: [:new , :create , :destroy]
