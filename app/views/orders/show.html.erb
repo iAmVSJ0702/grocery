@@ -1,10 +1,31 @@
-# app/views/orders/show.html.erb
-<h1>Order Details</h1>
-<p><strong>Name:</strong> <%= @order.name %></p>
-<p><strong>Email:</strong> <%= @order.email %></p>
-<p><strong>Address:</strong> <%= @order.address %></p>
-<h2>Ordered Items</h2>
-<% @order.ordered_items.each do |ordered_item| %>
-  <%= ordered_item.item.title %> x <%= ordered_item.quantity %>
-  <%= image_tag ordered_item.item.avatar,class: "list-image" %>
-<% end %>
+<div class= "center">
+  <h1 class="text-center">Order Details</h1>
+  <p><strong>Name: <%= @order.name %></strong> </p>
+  <p><strong>Email: <%= @order.email %></strong> </p>
+  <p><strong>Address: <%= @order.address %></strong> </p><br><br>
+  <h2>Ordered Items</h2>
+  <div class="updated-order">
+    <% @order.ordered_items.each do |orderable| %>
+      <% item = orderable.item %>
+        <div class="normal" style="width: 20rem;">
+          <div class="card-body list">
+            <%= image_tag item.avatar, style: "width: auto; height: 150px" %><br>
+            <strong>Name:</strong>
+            <%= item.title %><br>
+            <strong>Quantity:</strong>
+            <%= orderable.quantity %><br>
+            <strong>Price:</strong>
+            <%= item.price %><br><br>
+            <strong>Total:</strong>
+            <%= orderable.total %><br>
+          </div>
+        </div>
+      <% end %>
+  </div><br><br>
+  <b><p>Total is ₹<%= @order.total %> </p></b><br>
+  <%= link_to icon('fa', 'close')+" Cancel", order_path(@order.id), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: 'cancel-link'%>
+  <br><br><br>
+</div>
