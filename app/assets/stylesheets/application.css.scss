@@ -388,11 +388,17 @@ a:hover, .menu li a.active {
   font-size: larger;
   font-weight: bolder;
   flex-basis: 0;
+  height: 150px;
+}
+
+.order-image-container{
+  height: 150px;
+  width: 150px;
 }
 
 .order-image{
-  width: auto;
   height: 150px;
+  width: auto;
 }
 
 .order-item{

@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     		session[:user_id] = myUser.id
     		redirect_to root_path 
     	else
-    		render :new, status: :unprocessable_entity
+    		redirect_to signin_path, notice: "Incorrect email address or password"
     	end
     else
       redirect_to root_path , alert: "Already Logged in as #{current_user.name}"

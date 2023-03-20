@@ -1,6 +1,5 @@
 <div class="center">
 	<h3 class="text-center">SignIn</h3>
-	<h4><%= notice %></h4><br><br>
 	<div class="create-user">
 		<%= form_for(:user , url: sessions_path) do |f| %>
 			<div class="field form-group row">
@@ -13,8 +12,9 @@
 					<%= f.label :password , class: "col-sm-2 col-sm-offset-1  col-form-label" %>
 					<div class="col-sm-8">
 						<%= f.password_field :password , class: "form-control" %>
-			</div>			
-			</div><br><br>
+			</div>
+			</div>
+			<div class="notice"><%= notice %></div><br><br>
 			<div class="actions form-group row">
 				<div class="col-sm-5 col-sm-offset-5">
 					<%= f.submit "SignIn" ,class: "btn btn-success" %>
