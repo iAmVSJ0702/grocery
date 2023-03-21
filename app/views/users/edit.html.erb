@@ -11,7 +11,7 @@
 				</ul>
 			</div>
 		<% end %>
-
+		<h1 class="text-center">Edit Profile</h2><br>
 		<div class="field form-group row">
 			<%= f.label :name, class: "col-sm-2 col-sm-offset-1 col-form-label" %>
 			<div class="col-sm-8">
@@ -40,9 +40,9 @@
 			<div class="col-sm-5 col-sm-offset-5">
 				<%= f.submit "Update Profile" ,class: "btn btn-success" %>
 			</div>
-		</div>
+		</div><br><br>
 		<% unless is_admin? %>
-			<h4 class="text-center">Update password</h4>
+			<h2>Update password</h4>
 			<div class="field form-group row">
 				<%= f.label :Old_Password , class: "col-sm-2 col-sm-offset-1  col-form-label" %>
 				<div class="col-sm-8">
@@ -57,7 +57,7 @@
 			</div>
 			<div class="actions form-group row">
 				<div class="col-sm-5 col-sm-offset-5">
-					<%= f.submit "Change Password" ,class: "btn btn-success" %>
+					<%= f.submit "Change Password" ,class: "btn btn-success change-button" %>
 				</div>
 			</div>
 		<% end %>
