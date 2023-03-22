@@ -1,47 +1,42 @@
-<h2><%= notice %></h2>
-<div class= "center"><br><br>
-<h1>Admin Dashboard</h1><br><br>
-
-<ul class="grid-container">
-	<li  class="grid-item">
-    <h3><%= link_to "Change Password" , edit_admin_path(current_user.id) , method: "get" %></h3>
-  </li>
+<div class= "center">
+  <%= notice %><br><br>
+  <h1>Admin Dashboard</h1><br><br>
   
-	<li class="grid-item">
-    <h3><%= link_to "All Users" , users_path , class: "nav-link"  %></h3>
-  </li>
+  <ul class="grid-container">
+  	<li  class="grid-item">
+      <h2><%= link_to "Change Password" , edit_admin_path(current_user.id) , method: "get" %></h2>
+    </li>
 
-  <li class="grid-item">
-    <h3><%= link_to "Add new Category" , new_category_path , class: "nav-link" %></h3>
-  </li>
+  	<li class="grid-item">
+      <h2><%= link_to "All Users" , users_path , class: "nav-link"  %></h2>
+    </li>
 
-  <li class="grid-item">
-    <h3><%= link_to "Add new items to sell" , new_item_path, method: "get" , class: "nav-link" %></h3>
-  </li>
+    <li class="grid-item">
+      <h2><%= link_to "Add new Category" , new_category_path , class: "nav-link" %></h2>
+    </li>
 
-  <li role="presentation" class="grid-item">
-    <h3 class="dropdown-togglecategory">Add Subcategory <span class="caret"></span></h3><br>
-    <%= form_for(:category, url: new_subcategory_path, method: "get", id: "buga") do |f| %>
-			<label>Categories:</label><br>
-			<%= f.select(:id,options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update"}) %><br>
-			<br>
-			<%= f.submit "Go" , class: "btn btn-success" %>
-		<% end %>
-  </li>
+    <li class="grid-item">
+      <h2><%= link_to "Add new items to sell" , new_item_path, method: "get" , class: "nav-link" %></h2>
+    </li>
 
-  <li role="presentation" class="grid-item">
-    <h3 class="dropdown-toggle">Add Brand</h3><br>
-    <%= form_tag new_brand_path , method: "get" do %>
-			<label>Categories:</label><br>
-			<%= select_tag(:category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category" , class: "auto-update", data: {controller: "categories"} } ) %>
-			<br>
-			<div class="auto-update" id="category_subcategories_list">
-			</div><br>
-			<%= submit_tag("GO", class: "btn btn-success") %>
-		<% end %>
-  </li>
-</ul>
+    <li role="presentation" class="grid-item">
+      <h2 class="dropdown-togglecategory">Add Subcategory <span class="caret"></span></h2><br>
+      <%= form_for(:category, url: new_subcategory_path, method: "get", id: "buga") do |f| %>
+  			<label>Categories:</label><br>
+  			<%= f.select(:id,options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update"}) %><br><br>
+  			<%= f.submit "Go" , class: "btn btn-success" %>
+  		<% end %>
+    </li>
 
-<h3> Recent Transactions</h3>
-
+    <li role="presentation" class="grid-item">
+      <h2 class="dropdown-toggle">Add Brand</h2><br>
+      <%= form_tag new_brand_path , method: "get" do %>
+  			<label>Categories:</label><br>
+  			<%= select_tag(:category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category" , class: "auto-update", data: {controller: "categories"} } ) %><br>
+  			<div class="auto-update" id="category_subcategories_list">
+  			</div><br>
+  			<%= submit_tag("GO", class: "btn btn-success") %>
+  		<% end %>
+    </li>
+  </ul>
 </div>

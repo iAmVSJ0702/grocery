@@ -13,8 +13,8 @@
 	    		<h4 class="card-title title"><%= item.title %></h4><br>
 	    		<p class="card-text">The price is : <%= item.price %> </p><br>
 	    		<%= link_to icon('fa-solid', 'eye') , item , class: "btn" %>
-	    		<%= link_to icon('fa-solid', 'trash') , item_path(item) , data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "btn btn-danger" if is_admin? %>
-	    		<%= link_to icon('fa-solid', 'pen') , edit_item_path(item), method: "get" , class: "btn btn-primary" if is_admin? %>
+	    		<%= delete_link(item_path(item)) if admin? %>
+	    		<%= edit_link(edit_item_path(item)) if admin? %>
 	  		</div>
 			</div>
 		</section>

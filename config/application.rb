@@ -1,11 +1,14 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+# Find me in config/application.rb
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-
+# Include all config here
 module Grocery
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.

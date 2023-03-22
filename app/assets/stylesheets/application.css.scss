@@ -144,25 +144,25 @@ th, td {
  font-size: 40px;
 }
 
-.fa-solid.fa-eye, .fa-solid.fa-trash,.fa-solid.fa-pen{
+.fa-solid.fa-eye{
   font-size: medium;
   margin: 5px;
 }
 
-.fa-solid.fa-trash{
+.btn.btn-danger{
   color: red;
 }
 
-.fa-solid.fa-trash:hover{
-  color: rgb(131, 0, 0);
-}
-
-.fa-solid.fa-pen, .fa-solid.fa-person-circle-plus{
+.btn.btn-info, .fa-solid.fa-person-circle-plus{
   color: blue;
 }
 
-.fa-solid.fa-pen:hover, .fa-solid.fa-person-circle-plus:hover{
-  color: rgb(0, 0, 131);
+.btn.btn-danger:hover{
+  color: rgb(80, 0, 0);
+}
+
+.btn.btn-info:hover, .fa-solid.fa-person-circle-plus:hover{
+  color: rgb(0, 0, 80);
 }
 
 .fa-cart-plus{

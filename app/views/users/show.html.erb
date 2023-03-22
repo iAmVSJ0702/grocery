@@ -2,10 +2,10 @@
 <div class="center your-profile-card">
   <h1>Your Profile</h1><br><br>
   <ul class="list-group">
-    <li>Name : <%= current_user.name %></li>
-    <li>Address : <%= current_user.address %></li>
-    <li>Email : <%= current_user.email %></li>
-    <li>Phone : <%= current_user.phone %></li>
+    <li>Name : <%= @user.name %></li>
+    <li>Address : <%= @user.address %></li>
+    <li>Email : <%= @user.email %></li>
+    <li>Phone : <%= @user.phone %></li>
   </ul><br><br>
-  <%= link_to icon('fa-solid', 'pen-to-square') , edit_user_path(current_user.id) , class: "edit-button" %>
+  <%= link_to icon('fa-solid', 'pen-to-square') , edit_user_path(@user.id) , class: "edit-button" %>
 </div>

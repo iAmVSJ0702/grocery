@@ -1,8 +1,8 @@
 <div class="center">
   <h3 class="text-center add-element">Add new Subcategory for <%= @catname %> </h3><br>
-  <%= form_for(@newSubCat) do |f| %>
+  <%= form_for(@subcategory) do |f| %>
   	<div class= "field" >
-      <%= f.hidden_field :category ,value: @catName[:id] %>
+      <%= f.hidden_field :category ,value: @category[:id] %>
   		<label>Name:</label><br>
   		<%= f.text_field :name %>
       <div class="notice"><%= notice %></div><br>
@@ -17,10 +17,10 @@
       </tr>
     </thead>
     <tbody>
-    	<% @subCatAll.each do |subcat| %>
+    	<% @subcategories.each do |subcat| %>
         <tr>
           <td scope="row"><%= subcat[:name] %></td>
-          <td> <%= link_to icon('fa-solid', 'pen') , edit_subcategory_path(subcat.id) %> /<%= link_to icon('fa-solid', 'trash') , subcategory_path(subcat), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+          <td> <%= link_to icon('fa-solid', 'pen') , edit_subcategory_path(subcat.id) %> / <%= delete_link(subcategory_path(subcat)) %></td>
         </tr>
       <% end %>
     </tbody>

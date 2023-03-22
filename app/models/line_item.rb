@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# This is LineItem model
 class LineItem < ApplicationRecord
   belongs_to :product
   belongs_to :cart
@@ -5,6 +8,6 @@ class LineItem < ApplicationRecord
 
   # LOGIC
   def total_price
-    self.quantity * self.product.price
+    quantity * product.price
   end
 end

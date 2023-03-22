@@ -1,9 +1,9 @@
 <div class="category-group">
-  <% if @subcategories.present?%>
+  <% if @subcategoryegories.present?%>
     <%= turbo_stream.replace "category_subcategories_list" do %>
       <div class="auto-update index" id="category_subcategories_list">
         <label class="auto-update mb-2 mt-3">Subcategories:<br></label>
-        <%= select_tag(:subcategory , options_from_collection_for_select( @subcategories.all , :id , :name) , { prompt: "Select Subcategory" , class: "auto-update index", data: {controller: "brands"}} ) %>
+        <%= select_tag(:subcategory , options_from_collection_for_select( @subcategoryegories.all , :id , :name) , { prompt: "Select Subcategory" , class: "auto-update index", data: {controller: "brands"}} ) %>
       </div>
     <% end %>
   <% end %>

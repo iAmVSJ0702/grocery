@@ -1,74 +1,81 @@
+# frozen_string_literal: true
+
+# This is BrandsController
 class BrandsController < ApplicationController
+  before_action :set_subcategory
+  before_action :set_brand
+
   def index
-  	@allbrands = Subcategory.find_by(id: params[:cat_id]).brands.all
-  	respond_to do |format|
-  		format.json { render :json => @allbrands }
-  	end
+    @categories = Category.all
+  end
+
+  def show
   end
 
   def create
-    subCatId = params[:brand][:subcategory]
-    @subCat = Subcategory.find_by(id: subCatId)
-    catId = @subCat.category.id
+    subcategory_id = params[:brand][:subcategory]
+    @subcategory = Subcategory.find_by(id: subcategory_id)
+    category_id = @subcategory.category.id
     brand = params[:brand][:name]
-    @newBrand = @subCat.brands.create(name: brand)
-    if @newBrand.save
-      flash[:notice] = "Brand added"
-      redirect_to action: "new" , subcategory: subCatId , category: catId
-    else
-      flash[:notice] = "Brands already exist/Empty field"
-      redirect_to action: "new" , subcategory: subCatId , category: catId
-    end
+    @new_brand = @subcategory.brands.create(name: brand)
+    flash[:notice] = if @new_brand.save
+                       'Brand added'
+                     else
+                       'Brands already exist/Empty field'
+                     end
+    redirect_to action: 'new', subcategory: subcategory_id, category: category_id
   end
 
   def new
-    unless params[:category] == "" || params[:subcategory] == "" 
-      @newBrand = Brand.new
-      @cat = Category.find_by(id: params[:category])
-      @subCat = Subcategory.find_by(id: params[:subcategory])
-      @subCatName = @subCat.name
-      @brands = @subCat.brands.all
+    if params[:category] == '' || params[:subcategory] == ''
+      redirect_to admin_index_path, notice: 'Please enter parameters'
     else
-       redirect_to admin_index_path , notice: "Please enter parameters"
+      @new_brand = Brand.new
+      @category = Category.find_by(id: params[:category])
+      @subcategory_name = @subcategory.name
+      @brands = @subcategory.brands.all
     end
   end
 
   def edit
-    @brand= Brand.find_by(id: params[:id])
-    @cat = @brand.subcategory.category
-    @subcat = @cat.subcategories.all
+    @category = @brand.subcategory.category
+    @subcategory = @category.subcategories.all
   end
 
   def update
-    brand = Brand.find_by(id: params[:id])
-    if params[:subcategory]=="" || params[:brand][:name]==""
-      redirect_to edit_brand_path(brand.id) , notice: "Unable to update as you did not assign a subcategory or left the text field blank"
+    if params[:subcategory] == '' || params[:brand][:name] == ''
+      redirect_to edit_brand_path(brand.id),
+                  notice: 'Unable to update as you did not assign a subcategory or left the text field blank'
     else
-      brand.update(name: params[:brand][:name])
-      subCat = Subcategory.find_by(id: params[:subcategory])
-      subCat.brands << brand
-      if brand.errors.any?
-        redirect_to edit_brand_path(brand.id) , notice: "The subcategory already has a brand with the same name"
+      @brand.update(name: params[:brand][:name])
+      @subcategory.brands << @brand
+      if @brand.errors.any?
+        redirect_to edit_brand_path(@brand.id), notice: 'The subcategory already has a brand with the same name'
       else
-        redirect_to edit_brand_path(brand.id) , notice: "Updated Successfully"
+        redirect_to edit_brand_path(@brand.id), notice: 'Updated Successfully'
       end
     end
   end
 
   def destroy
-    brandId = params[:id]
-    @deleteBrand = Brand.find_by(id: brandId)
-    subcatid = @deleteBrand.subcategory.id
-    catid = @deleteBrand.subcategory.category.id
-    @deleteBrand.destroy
-    redirect_to action: "new" , subcategory: subcatid , category: catid
+    subcatid = @brand.subcategory.id
+    catid = @brand.subcategory.category.id
+    @brand.destroy
+    redirect_to action: 'new', subcategory: subcatid, category: catid
   end
 
   def subcategory
     @target = params[:target]
-    @subcategory = Subcategory.find_by(id: params[:subcategory])  
-    respond_to do |format|
-      format.turbo_stream
-    end
+    respond_to(&:turbo_stream)
+  end
+
+  private
+
+  def set_brand
+    @brand = Brand.find_by(id: params[:id])
+  end
+
+  def set_subcategory
+    @subcategory = Subcategory.find_by(id: params[:subcategory])
   end
 end

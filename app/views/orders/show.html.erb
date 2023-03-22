@@ -23,9 +23,6 @@
       <% end %>
   </div><br><br>
   <b><p>Total is ₹<%= @order.total %> </p></b><br>
-  <%= link_to icon('fa', 'close')+" Cancel", order_path(@order.id), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  }, class: 'cancel-link'%>
+  <%= delete_link(order_path(@order.id), "Cancel") %>
   <br><br><br>
 </div>

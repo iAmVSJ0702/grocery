@@ -1,13 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @subcategory %>
 <p>
   <b>Category name: </b>
-  <%=h subcategory.category.name %>
+  <%= @subcategory.category.name %>
 </p>
 
-<div>
-  <%= link_to "Edit this subcategory", edit_subcategory_path(@subcategory) %> |
-  <%= link_to "Back to subcategories", subcategories_path %>
-  <%= button_to "Destroy this subcategory", @subcategory, method: :delete %>
-</div>
+<p>
+  <b>Subcategory name: </b>
+  <%= @subcategory.name %>
+</p>
+
+<% @subcategory.brands.each do |brand| %>
+  <%= brand.name %>
+<% end %>

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# This is migration for CreateSubcategories
 class CreateSubcategories < ActiveRecord::Migration[7.0]
   def change
     create_table :subcategories do |t|

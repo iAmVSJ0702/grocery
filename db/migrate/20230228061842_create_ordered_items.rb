@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# This is migration for CreateOrderedItems
 class CreateOrderedItems < ActiveRecord::Migration[7.0]
   def change
     create_table :ordered_items do |t|

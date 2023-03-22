@@ -1,6 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @cat %>
+<%= @category.name %><br><br>
+Subcategories<br>
+<% @category.subcategories.each do |subcategory|%>
+  <br><%= subcategory.name %>
+<% end %>
 
 <div>
   <%= link_to "Edit this category", edit_category_path(@category) %> |

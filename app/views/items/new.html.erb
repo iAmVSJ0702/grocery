@@ -5,14 +5,14 @@
 		<div class="col-sm-6">
 			<%= text_field_tag :title , nil ,class: "form-control" %>
 		</div>
-		<p class='error'><%= show_errors(@newItem, :title) %></p>
+		<p class='error'><%= show_errors(@new_item, :title) %></p>
 	</div> 
 	<div class="field form-group row">
 		<%= label_tag :price , nil , class: "col-sm-2 col-form-label" %>
 		<div class="col-sm-6">
 			<%= text_field_tag :price, nil , class: "form-control" %>
 		</div> 
-		<p class='error'><%= show_errors(@newItem, :price) %></p>
+		<p class='error'><%= show_errors(@new_item, :price) %></p>
 	</div> 
 	<div class="field form-group row">
 		<%= label_tag :description , nil , class: "col-sm-2 col-form-label" %>

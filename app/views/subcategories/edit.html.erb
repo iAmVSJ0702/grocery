@@ -1,19 +1,15 @@
 <div class="center">
 <h4><%= notice %> </h4>
 <h2 class="text-center">Edit Category</h2><br>
-<%= form_for(@subCat) do |t| %>
+<%= form_for(@subcategory) do |t| %>
   <div class="field form-group row" >
-    <p>
-      <%= t.label :category_id %><br>
-      <%= collection_select(:subcategory, :category_id, Category.all, :id, :name, options ={:prompt => ""}) %>
-    </p><br>
     <%= t.label :name , class: "col-sm-2 col-sm-label" %>
     <div class="col-sm-4">
       <%= t.text_field :name , class: "form-control" %>
     </div><br>
     <%= label_tag :Edit_Category_for_Subcategory, nil , class: "col-sm-2 col-sm-label" %>
     <div class= "col-sm-4">
-      <%= select_tag(:category,options_from_collection_for_select( Category.all , :id , :name, @subCat.category.id ))%>
+      <%= select_tag(:category,options_from_collection_for_select( Category.all , :id , :name, @subcategory.category.id ))%>
     </div>
   </div><br>
   <%= t.submit "Update" , class: "btn btn-success" %>

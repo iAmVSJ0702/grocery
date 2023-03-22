@@ -1,75 +1,79 @@
+# frozen_string_literal: true
+
+# This is SubcategoriesController
 class SubcategoriesController < ApplicationController
+  before_action :set_subcategory, only: %i[edit show update destroy]
   def index
-    @category = Category.all
-  	@allSubCat = Category.find_by(id: params[:cat_id]).subcategories.all
-  	respond_to do |format|
-  		format.json { render :json => @allSubCat }
-  	end 
+    @categories = Category.all
+  end
+
+  def show
+
   end
 
   def subcategory
     @target = params[:target]
     @subcategory = Category.find_by(id: params[:cat_id]).subcategories.all
-  	respond_to do |format|
-  		format.turbo_stream
-  	end 
+    respond_to(&:turbo_stream)
   end
   
   def new
-    unless params[:category][:id]==""
-      @newSubCat = Subcategory.new
-      @catName =   Category.find_by(id: params[:category][:id])
-      @subCatAll = @catName.subcategories.all 
-      @catname = @catName[:name]
-    else
+    if params[:category][:id] == ''
       redirect_to admin_index_path
+    else
+      @subcategory = Subcategory.new
+      @category = Category.find_by(id: params[:category][:id])
+      @subcategories = @category.subcategories.all
+      @catname = @category[:name]
     end
   end
 
   def edit
-    @subCat = Subcategory.find_by(id: params[:id])
   end
 
   def update
-    newName = params[:subcategory][:name]
-    @subCat = Subcategory.find_by(id: params[:id])
-    newCat = Category.find_by(id: params[:category])
-    @subCat.update(name: newName)
-    newCat.subcategories << @subCat
-    unless @subCat.errors.any?
-      flash[:notice] = "Updated Successfully"
-      redirect_to  action: "new" , category: {id: params[:category]}
+    new_name = params[:subcategory][:name]
+    new_category = Category.find_by(id: params[:category])
+    @subcategory.update(name: new_name)
+    new_category.subcategories << @subcategory
+    if @subcategory.errors.any?
+      flash[:notice] = 'Not Updated: The Category might already have an subcategory with the same name / Empty Field'
+      redirect_to action: 'edit'
     else
-      flash[:notice] = "Not Updated: The Category might already have an subcategory with the same name / Empty Field"
-      redirect_to action: "edit" 
+      flash[:notice] = 'Updated Successfully'
+      redirect_to action: 'new', category: { id: params[:category] }
     end
   end
 
   def create
-    catId = params[:subcategory][:category]
-    subCatName = params[:subcategory][:name]
-    @cat = Category.find_by(id: catId)
-    @newSubCat = @cat.subcategories.create(name: subCatName)
-    if @newSubCat.save
-      flash[:notice] = "Added successfully"
-      redirect_to action: "new" , category: {id: catId}
-    else
-      flash[:notice] = "Subcategory already exist/Blank Field"
-      redirect_to action: "new" , category: {id: catId}
-    end
+    category_id = params[:subcategory][:category]
+    subcategory_name = params[:subcategory][:name]
+    @category = Category.find_by(id: category_id)
+    @subcategory = @category.subcategories.create(name: subcategory_name)
+    flash[:notice] = if @subcategory.save
+                       'Added successfully'
+                     else
+                       'Subcategory already exist/Blank Field'
+                     end
+    redirect_to action: 'new', category: { id: category_id }
   end
 
   def destroy
-    @delSubCat = Subcategory.find_by(id: params[:id])
-    catId = @delSubCat.category.id
-    @delSubCat.destroy
-    redirect_to action: "new" , category: {id: catId}
+    category_id = @subcategory.category.id
+    @subcategory.destroy
+    redirect_to action: 'new', category: { id: category_id }
   end
 
   def for_categoryid
-    @subcategories = Subcategory.find_all_by_section_id( params[:id]).sort_by{ |k| k['name'] }
+    @subcategories = Subcategory.find_all_by_section_id(params[:id]).sort_by { |k| k['name'] }
     respond_to do |format|
-      format.json { render :json => @subcategories }
+      format.json { render json: @subcategories }
     end
+  end
+
+  private
+
+  def set_subcategory
+    @subcategory = Subcategory.find(params[:id])
   end
 end

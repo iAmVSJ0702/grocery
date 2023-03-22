@@ -15,7 +15,7 @@
       </tr>
     </thead><br>
     <tbody>
-    <% @allUsers.each do |use| %>
+    <% @all_users.each do |use| %>
       <% unless use.account_type == "admin" %>
       <tr>
       <th scope="row"><%= use[:id] %></th>
@@ -24,7 +24,7 @@
         <td><%= use[:address] %></td>
         <td><%= use[:phone] %> </td>
         <td><%= use[:account_type] %></td>
-        <td><%= link_to icon('fa-solid', 'trash') , user_path(use), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+        <td><%= delete_link(user_path(use)) %></td>
       </tr>
       <% end %>
     <% end %>

@@ -1,7 +1,6 @@
 <div class="center">
   <%= notice %>
   <h1 class="text-center">My Cart</h1><br><br>
-  <%=turbo_frame_tag "cart" do%>
     <% if @cart.orderables.count > 0 %>
       <div class="updated-cart">
         <% @cart.orderables.each do |orderable| %>
@@ -29,10 +28,10 @@
             </div>
           <% end %>
       </div>
+      
+    <b><p>Total is ₹<%= @cart.total %> </p></b><br>
+    <%= link_to icon('fa-solid', 'bag-shopping', 'Checkout'), new_order_path, class: 'checkout-link' %>
     <% else %>
       <p>Cart is empty</p>
     <% end %><br>
-    <b><p>Total is ₹<%= @cart.total %> </p></b><br>
-  <% end %>
-  <%= link_to icon('fa-solid', 'bag-shopping', 'Checkout'), new_order_path, class: 'checkout-link' %>
 </div>

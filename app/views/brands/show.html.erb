@@ -1,9 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @brand %>
+<p>
+  <b>Category name: </b>
+  <%= @brand.subcategory.category.name %>
+</p>
 
-<div>
-  <%= link_to "Edit this brand", edit_brand_path(@brand) %> |
-  <%= link_to "Back to brands", brands_path %>
-  <%= button_to "Destroy this brand", @brand, method: :delete %>
-</div>
+<p>
+  <b>Subcategory name: </b>
+  <%= @brand.subcategory.name %>
+</p>
+
+<p>
+  <b>Brand name: </b>
+  <%= @brand.name %>
+</p>
+
+<% @brand.items.each do |item|%>
+  <br><%= item.title %>
+<% end %>

@@ -1,9 +1,9 @@
 <div class="center">
-  <h3 class="text-center add-element">Add new brand for Subcategory : <%= @subCat.name  %> and Category : <%= @cat.name %> </h3><br>
-  <%= form_for(@newBrand) do |f| %>
+  <h3 class="text-center add-element">Add new brand for Subcategory : <%= @subcategory.name  %> and Category : <%= @category.name %> </h3><br>
+  <%= form_for(@new_brand) do |f| %>
   	<div class= "field" >
-      <%= f.hidden_field :category , value: @cat[:id] %>
-      <%= f.hidden_field :subcategory , value: @subCat[:id] %>
+      <%= f.hidden_field :category , value: @category[:id] %>
+      <%= f.hidden_field :subcategory , value: @subcategory[:id] %>
   		<label>Name:</label><br>
   		<%= f.text_field :name %>
       <div class="notice"><%= notice %></div><br>
@@ -22,7 +22,7 @@
     	<% @brands.each do |brand| %>
         <tr>
           <td scope="row"><%= brand[:name] %></td>
-          <td><%= link_to icon('fa-solid', 'pen') , edit_brand_path(brand.id) , method: "get" %> / <%= link_to icon('fa-solid', 'trash') , brand_path(brand) , data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%></td>
+          <td><%= edit_link(edit_brand_path(brand.id)) %> / <%= delete_link(brand_path(brand))%></td>
         </tr>
       <% end %>
     </tbody>
