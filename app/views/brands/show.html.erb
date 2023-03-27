@@ -1,20 +1,19 @@
-<p style="color: green"><%= notice %></p>
-
-<p>
-  <b>Category name: </b>
-  <%= @brand.subcategory.category.name %>
-</p>
-
-<p>
-  <b>Subcategory name: </b>
-  <%= @brand.subcategory.name %>
-</p>
-
-<p>
-  <b>Brand name: </b>
-  <%= @brand.name %>
-</p>
-
-<% @brand.items.each do |item|%>
-  <br><%= item.title %>
-<% end %>
+<div class="center"><br>
+  <%= notice %>
+  <h1 >Brand: <%= @brand.name %> for subcategory: <%= @brand.subcategory.name %> and category: <%= @brand.subcategory.category.name %></h1> <br><br>
+  <%= edit_link(edit_brand_path(@brand.id),"Edit") %> / <%= delete_link(brand_path(@brand),"Delete") %><br><br>
+  <% if @brand.items.count > 0 %>
+    <div id="subcategories">
+      <table class="card">
+        <thead>
+          <tr><th>Items</th></tr>
+        </thead>
+        <tbody>
+          <% @brand.items.each do |item|%>
+            <tr><td scope="row"><%= link_to item.title, item %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

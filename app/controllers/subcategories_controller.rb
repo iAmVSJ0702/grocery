@@ -7,16 +7,14 @@ class SubcategoriesController < ApplicationController
     @categories = Category.all
   end
 
-  def show
-
-  end
+  def show; end
 
   def subcategory
     @target = params[:target]
     @subcategory = Category.find_by(id: params[:cat_id]).subcategories.all
     respond_to(&:turbo_stream)
   end
-  
+
   def new
     if params[:category][:id] == ''
       redirect_to admin_index_path
@@ -28,8 +26,7 @@ class SubcategoriesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     new_name = params[:subcategory][:name]
@@ -49,19 +46,18 @@ class SubcategoriesController < ApplicationController
     category_id = params[:subcategory][:category]
     subcategory_name = params[:subcategory][:name]
     @category = Category.find_by(id: category_id)
-    @subcategory = @category.subcategories.create(name: subcategory_name)
-    flash[:notice] = if @subcategory.save
-                       'Added successfully'
-                     else
-                       'Subcategory already exist/Blank Field'
-                     end
-    redirect_to action: 'new', category: { id: category_id }
+    @subcategory = @category.subcategories.create(name: subcategory_name.capitalize)
+    if @subcategory.save
+      redirect_to subcategory_path(@subcategory), notice: 'Successfully added subcategory'
+    else
+      render :new, notice: 'Subcategory Already exists/Blank Field'
+    end
   end
 
   def destroy
     category_id = @subcategory.category.id
     @subcategory.destroy
-    redirect_to action: 'new', category: { id: category_id }
+    redirect_to subcategories_path, notice: 'Successfully Deleted'
   end
 
   def for_categoryid

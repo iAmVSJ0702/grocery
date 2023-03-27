@@ -1,23 +1,25 @@
+<%= notice %>
 <%= form_tag items_path , { method: "post", id: "buga" , multipart: true }  do %>
 	<div class="field form-group row"><br>
 		<h3 class="text-center">Add New Item </h3>
+    <%= hidden_field_tag(:brand, value = @brand[:id]) %>
 		<%= label_tag :title , nil ,class: "col-sm-2 col-form-label"  %>
 		<div class="col-sm-6">
-			<%= text_field_tag :title , nil ,class: "form-control" %>
+			<%= text_field_tag :title, @new_item.title%>
+			<p class='error'><%= show_errors(@new_item, :title) %></p>
 		</div>
-		<p class='error'><%= show_errors(@new_item, :title) %></p>
 	</div> 
 	<div class="field form-group row">
 		<%= label_tag :price , nil , class: "col-sm-2 col-form-label" %>
 		<div class="col-sm-6">
-			<%= text_field_tag :price, nil , class: "form-control" %>
+			<%= text_field_tag :price, @new_item.price%>
+			<p class='error'><%= show_errors(@new_item, :price) %></p>
 		</div> 
-		<p class='error'><%= show_errors(@new_item, :price) %></p>
 	</div> 
 	<div class="field form-group row">
 		<%= label_tag :description , nil , class: "col-sm-2 col-form-label" %>
 		<div class="col-sm-6">
-			<%= text_area_tag :description , nil , class: "form-control" %>
+			<%= text_area_tag :description, @new_item.description %>
 		</div>
 	</div>
 	<div class="field form-group row" >
@@ -25,13 +27,6 @@
 		<%= file_field_tag :avatar , class: "col-sm-6" %>
 	</div>
 
-	<div class="field dorm-group row">
-		<label class="auto-update mb-2 mt-3">Categories:<br></label>
-		<%= select_tag( :category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update", data: {controller: "subcategories"}} ) %>
-		<p><div class="auto-update" id="category_subcategories_list"></div></p>
-		<p><div class="auto-update" id="subcategory_brands_list"></div></p>
-	</div>
-	<div class="notice"><%= notice %></div>
 	<div class="action form-group row">
 		<div class="col-sm-6"><br>
 			<%= submit_tag("Create Item", class: "btn btn-success") %>

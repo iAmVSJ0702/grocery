@@ -15,7 +15,7 @@
 
 		<%= form_with(url: cart_add_path) do |f| %>
 			<%= f.hidden_field :id, value: @my_item.id %>
-			<%= f.number_field :quantity, value: 0, min: 1 %><br>
+			<%= f.number_field :quantity, value: 1, min: 1 %><br>
 			<%= button_tag type: 'submit', class: "edit-button" do %>
 				<i class="fa-solid fa-cart-plus"></i>
 			<% end %>

@@ -1,16 +1,23 @@
-<p style="color: green"><%= notice %></p>
-<ul>
-<% @categories.each do |category|%>
-  <li><%= category.name %></li>
-  <ul>
-    <% category.subcategories.each do |subcategory| %>
-      <li><%= subcategory.name %></li>
-      <ul>
-        <% subcategory.brands.each do |brand| %>
-          <li><%= link_to brand.name, brand %></li>
-        <% end %>
-      </ul>
-    <% end %>
-  </ul>
-<% end %>
-</ul>
+<div class="center"><br>
+  <%= notice %>
+  <h1 class="text-center">Brands</h1> <br><br>
+
+  <div id="subcategories" style="padding: 20px">
+    <table>
+      <thead>
+        <tr>
+          <% @subcategories.each do |subcategory| %>
+            <th><%= subcategory.name %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+      <tr><% @subcategories.each do |subcategory| %>
+        <td scope="row"><% subcategory.brands.each do |brand| %>
+          <%= link_to brand.name, brand %><br><br>
+        <% end %></td>
+      <% end %></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

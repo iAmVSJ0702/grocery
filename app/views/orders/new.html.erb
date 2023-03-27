@@ -1,4 +1,5 @@
 <div class="center">
+  <% if @orderable_count > 0%>
   <h3 class="text-center add-element"> Place Order <%= @catname %> </h3><br>
   <%= form_with(model: @order, local: true) do |form| %>
   <% if @order.errors.any? %>
@@ -40,5 +41,9 @@
 		  </div> 
 	  </div><br>
     <%= form.submit "Place Order", class: "btn btn-success" %>
-<% end %>
+  <% end %>
+
+  <% else %>
+    <br><h3>Your Cart is Empty</h3>
+  <% end %>
 </div>

@@ -1,5 +1,5 @@
 <div class="center">
-  <h3 class="text-center add-element">Add new brand for Subcategory : <%= @subcategory.name  %> and Category : <%= @category.name %> </h3><br>
+  <h3 class="text-center add-element">Add New Brand For Subcategory : <%= @subcategory.name  %> And Category : <%= @category.name %> </h3><br>
   <%= form_for(@new_brand) do |f| %>
   	<div class= "field" >
       <%= f.hidden_field :category , value: @category[:id] %>

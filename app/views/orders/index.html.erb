@@ -1,5 +1,6 @@
-<h2 class="text-center">All Orders</h2><br>
-
+<div class="center">
+<h2 class="text-center">My orders</h2><br>
+<% if @orders.count > 0 %>
 <% @orders.each do |order| %>
   <% if @user.email == order.email %>
     <%= link_to order_path(order.id) do%>
@@ -17,3 +18,7 @@
     <% end %>
   <% end %>
 <% end %>
+<% else %>
+  <br>Order Something First
+<% end %>
+</div>

@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @user = current_user
+    @orderable_count = @cart.orderables.count
   end
 
   def create

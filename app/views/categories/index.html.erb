@@ -1,11 +1,16 @@
-<p style="color: green"><%= notice %></p>
+<div class="center"><br>
+  <%= notice %>
+  <h1 class="text-center">Categories</h1> <br><br>
 
-<h1>Categories</h1>
-
-<div id="categories">
-<ul>
-  <% @categories.each do |category| %>
-    <li><%= link_to category.name, category %></li>
-  <% end %>
-</ul>
+  <div id="categories">
+    <table class="card">
+      <tbody>
+        <% @categories.each do |category| %>
+        <tr>
+          <td scope="row"><%= link_to category.name, category %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

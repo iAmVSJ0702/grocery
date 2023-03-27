@@ -6,24 +6,22 @@ class BrandsController < ApplicationController
   before_action :set_brand
 
   def index
-    @categories = Category.all
+    @subcategories = Subcategory.all
   end
 
-  def show
-  end
+  def show; end
 
   def create
     subcategory_id = params[:brand][:subcategory]
     @subcategory = Subcategory.find_by(id: subcategory_id)
     category_id = @subcategory.category.id
     brand = params[:brand][:name]
-    @new_brand = @subcategory.brands.create(name: brand)
-    flash[:notice] = if @new_brand.save
-                       'Brand added'
-                     else
-                       'Brands already exist/Empty field'
-                     end
-    redirect_to action: 'new', subcategory: subcategory_id, category: category_id
+    @new_brand = @subcategory.brands.create(name: brand.capitalize)
+    if @new_brand.save
+      redirect_to brand_path(@new_brand), notice: 'Successfully added brand'
+    else
+      render :new, notice: 'Brand Already exists/Blank Field'
+    end
   end
 
   def new
@@ -61,7 +59,7 @@ class BrandsController < ApplicationController
     subcatid = @brand.subcategory.id
     catid = @brand.subcategory.category.id
     @brand.destroy
-    redirect_to action: 'new', subcategory: subcatid, category: catid
+    redirect_to brands_path, notice: 'Successfully Deleted'
   end
 
   def subcategory

@@ -1,11 +1,23 @@
-<p style="color: green"><%= notice %></p>
-<ul>
-<% @categories.each do |category|%>
-  <li><%= category.name %></li>
-  <ul>
-    <% category.subcategories.each do |subcategory| %>
-      <li><%= link_to subcategory.name, subcategory %></li>
-    <% end %>
-  </ul>
-<% end %>
-</ul>
+<div class="center"><br>
+  <%= notice %>
+  <h1 class="text-center">Subcategories</h1> <br><br>
+
+  <div id="subcategories">
+    <table class="card">
+      <thead>
+        <tr>
+          <% @categories.each do |category| %>
+            <th><%= category.name %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+      <tr><% @categories.each do |category| %>
+        <td scope="row"><% category.subcategories.each do |subcategory| %>
+          <%= link_to subcategory.name, subcategory %><br><br>
+        <% end %></td>
+      <% end %></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

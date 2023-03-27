@@ -13,28 +13,24 @@ class ItemsController < ApplicationController
     @brand_id_alt = params[:brand1]
 
     @categories = Category.all
-    @subcategories = Subcategory.where('category_id = ?', Category.first.id)
-
+    @brands = Brand.all
     @all_items = Item.all.order(id: :desc) if @category_id.nil? || @category_id == ''
 
     unless @category_id.nil? || @category_id == ''
+      @subcategories = Category.find(@category_id).subcategories.all
       @category = Category.find(@category_id)
       @all_items = @category.items
+      unless @subcategory_id.nil? || @subcategory_id == ''
+        @brands = Subcategory.find(@subcategory_id).brands.all
+        @subcategory = @category.subcategories.find_by(id: @subcategory_id)
+      end
+      @all_items = @subcategory.items unless @subcategory.nil?
+      @brand = @subcategory.brands.find_by(id: @brand_id) unless @brand_id.nil? || @brand_id == '' || @subcategory.nil?
+      @all_items = @brand.items unless @brand.nil?
     end
-
-    unless @subcategory_id.nil? || @subcategory_id == ''
-      @subcategory = @category.subcategories.find_by(id: @subcategory_id)
-    end
-    @all_items = @subcategory.items unless @subcategory.nil?
-
-    @brand = @subcategory.brands.find_by(id: @brand_id) unless @brand_id.nil? || @brand_id == '' || @subcategory.nil?
-    @all_items = @brand.items unless @brand.nil?
-
     @user = User.find_by(id: session[:user_id])
-
     @brand1 = Brand.find_by(id: @brand_id_alt)
     @all_items = @brand1.items unless @brand1.nil?
-
     respond_to do |format|
       format.html
       format.json
@@ -44,26 +40,19 @@ class ItemsController < ApplicationController
 
   def new
     @new_item = Item.new
+    @brand = Brand.find_by(id: params[:brand])
   end
 
   def create
-    @category_id = params[:category]
-    @subcategory_id = params[:subcategory]
-    @brand_id = params[:brand]
-    if @category_id.nil? || @category_id == ''
-      redirect_to new_item_path, notice: "Category can't be empty"
-    elsif @subcategory_id.nil? || @subcategory_id == ''
-      redirect_to new_item_path, notice: "Subcategory can't be empty"
-    elsif @brand_id.nil? || @brand_id == ''
-      redirect_to new_item_path, notice: "Brand can't be empty"
+    brand_id = params[:brand]
+    @brand = Brand.find(params[:brand])
+    item = params[:title]
+    @new_item = @brand.items.create(title: params[:title], price: params[:price], description: params[:description],
+                                    avatar: params[:avatar])
+    if @new_item.save
+      redirect_to item_path(@new_item), notice: 'Successfullt added item'
     else
-      @newItem =  Category.find_by(id: params[:category]).subcategories.find_by(id: params[:subcategory]).brands.find_by(id: params[:brand]).items.create title: params[:title],
-                                                                                                                                                          price: params[:price], description: params[:description], avatar: params[:avatar]
-      if @newItem.save
-        redirect_to root_path, notice: 'Success for new item'
-      else
-        render :new, status: :unprocessable_entity
-      end
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -100,16 +89,20 @@ class ItemsController < ApplicationController
 
   def destroy
     @my_item.destroy
-    redirect_to root_path
+    redirect_to items_path, notice: 'Successfully Deleted'
   end
 
   def fetch_category_subcategories
     category = Category.find_by(id: params[:subcategory_code])
-    @subcategoryegories = category.subcategories.all
+    return if category.nil?
+
+    @subcategories = category.subcategories.all
   end
 
   def fetch_subcategory_brands
     subcategory = Subcategory.find_by(id: params[:brand_code])
+    return if subcategory.nil?
+
     @brands = subcategory.brands.all
   end
 

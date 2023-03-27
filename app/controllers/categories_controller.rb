@@ -2,14 +2,13 @@
 
 # This is CategoriesController
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[show destroy]
+  before_action :set_category, only: %i[show edit destroy]
 
   def index
     @categories = Category.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @new_category = Category.new
@@ -19,7 +18,7 @@ class CategoriesController < ApplicationController
   def create
     @new_category = Category.new(category_params)
     if @new_category.save
-      redirect_to new_category_path, notice: 'Successfully added category'
+      redirect_to category_path(@new_category), notice: 'Successfully added category'
     else
       redirect_to new_category_path, notice: 'Category Already exists/Blank Field'
     end
@@ -29,7 +28,7 @@ class CategoriesController < ApplicationController
 
   def update
     new_category = params[:category][:name]
-    @category.update name: new_category
+    @category.update name: new_category.capitalize
     redirect_to new_category_path
   end
 
@@ -37,7 +36,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    redirect_to new_category_path
+    redirect_to categories_path, notice: 'Successfully Deleted'
   end
 
   private

@@ -13,6 +13,7 @@
 
   <body>
     <%= render "layouts/navbar" %>
+    <%= link_to '<i class="fa-solid fa-arrow-left"></i>'.html_safe , 'javascript:history.back()', class:"float" %>
     <%= yield %>
   </body>
 </html>

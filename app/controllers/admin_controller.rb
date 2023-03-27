@@ -22,6 +22,6 @@ class AdminController < ApplicationController
 
   def fetch_category_subcategories
     category = Category.find_by(id: params[:category_code])
-    @subcategoryegories = category.subcategories.all
+    @subcategories = category.subcategories.all
   end
 end

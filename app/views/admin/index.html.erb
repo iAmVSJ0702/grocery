@@ -8,19 +8,29 @@
     </li>
 
   	<li class="grid-item">
-      <h2><%= link_to "All Users" , users_path , class: "nav-link"  %></h2>
+      <h2><%= link_to "Show All Users" , users_path , class: "nav-link"  %></h2>
     </li>
 
     <li class="grid-item">
-      <h2><%= link_to "Add new Category" , new_category_path , class: "nav-link" %></h2>
+      <h2><%= link_to "Show All Categories" , categories_path , class: "nav-link"  %></h2><br>
+      <h3><%= link_to "Add New Category" , new_category_path , class: "nav-link" %></h3>
     </li>
 
     <li class="grid-item">
-      <h2><%= link_to "Add new items to sell" , new_item_path, method: "get" , class: "nav-link" %></h2>
+      <h2><%= link_to "Show All Items" , items_path , class: "nav-link"  %></h2><br>
+      <h3 class="dropdown-toggle">Add New Brand</h2>
+      <%= form_tag new_item_path , method: "get" do %>
+    		<p class="category-group">Category:<br>
+    		<%= select_tag( :category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update index", data: {controller: "subcategories"}} ) %></p>
+    		<p><div class="auto-update index" id="category_subcategories_list"></div></p>
+    		<p><div class="auto-update index" id="subcategory_brands_list"></div></p>
+    		<%= submit_tag("GO", class: "item-go-btn") %>
+		  <% end %>
     </li>
 
     <li role="presentation" class="grid-item">
-      <h2 class="dropdown-togglecategory">Add Subcategory <span class="caret"></span></h2><br>
+      <h2><%= link_to "Show All Subcategories" , subcategories_path , class: "nav-link"  %></h2><br>
+      <h3 class="dropdown-togglecategory">Add New Subcategory <span class="caret"></span></h3>
       <%= form_for(:category, url: new_subcategory_path, method: "get", id: "buga") do |f| %>
   			<label>Categories:</label><br>
   			<%= f.select(:id,options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update"}) %><br><br>
@@ -29,12 +39,12 @@
     </li>
 
     <li role="presentation" class="grid-item">
-      <h2 class="dropdown-toggle">Add Brand</h2><br>
+      <h2><%= link_to "Show All brands" , brands_path , class: "nav-link"  %></h2><br>
+      <h3 class="dropdown-toggle">Add New Brand</h2>
       <%= form_tag new_brand_path , method: "get" do %>
   			<label>Categories:</label><br>
-  			<%= select_tag(:category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category" , class: "auto-update", data: {controller: "categories"} } ) %><br>
-  			<div class="auto-update" id="category_subcategories_list">
-  			</div><br>
+  			<%= select_tag(:category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category" , class: "auto-update", data: {controller: "category"} } ) %><br>
+  			<div class="auto-update" id="category_subcategories_list_brand"></div><br>
   			<%= submit_tag("GO", class: "btn btn-success") %>
   		<% end %>
     </li>

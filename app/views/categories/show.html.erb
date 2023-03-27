@@ -1,13 +1,23 @@
-<p style="color: green"><%= notice %></p>
-
-<%= @category.name %><br><br>
-Subcategories<br>
-<% @category.subcategories.each do |subcategory|%>
-  <br><%= subcategory.name %>
-<% end %>
-
-<div>
-  <%= link_to "Edit this category", edit_category_path(@category) %> |
-  <%= link_to "Back to categories", categories_path %>
-  <%= button_to "Destroy this category", @category, method: :delete %>
+<div class="center"><br>
+  <%= notice %>
+  <h1 class="text-center">Category: <%= @category.name %></h1> <br><br>
+  <%= edit_link(edit_category_path(@category.id),"Edit") %> / <%= delete_link(category_path(@category),"Delete") %><br><br>
+  <% if @category.subcategories.count > 0 %>
+    <div id="subcategories">
+      <table class="card">
+      <thead>
+          <tr>
+            <th>Subcategories</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @category.subcategories.each do |subcategory|%>
+          <tr>
+            <td scope="row"><%= link_to subcategory.name, subcategory %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 </div>

@@ -1,0 +1,13 @@
+current directory: /mnt/c/vgro/grocery/vendor/bundle/ruby/3.1.0/gems/json-2.6.3/ext/json
+/home/vaibhav/.rbenv/versions/3.1.3/bin/ruby -I /home/vaibhav/.rbenv/versions/3.1.3/lib/ruby/3.1.0 extconf.rb
+creating Makefile
+
+current directory: /mnt/c/vgro/grocery/vendor/bundle/ruby/3.1.0/gems/json-2.6.3/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20230327-4663-7ox9ch sitelibdir\=./.gem.20230327-4663-7ox9ch clean
+
+current directory: /mnt/c/vgro/grocery/vendor/bundle/ruby/3.1.0/gems/json-2.6.3/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20230327-4663-7ox9ch sitelibdir\=./.gem.20230327-4663-7ox9ch
+make: Nothing to be done for 'all'.
+
+current directory: /mnt/c/vgro/grocery/vendor/bundle/ruby/3.1.0/gems/json-2.6.3/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20230327-4663-7ox9ch sitelibdir\=./.gem.20230327-4663-7ox9ch install

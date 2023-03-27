@@ -4,14 +4,29 @@
 		<%= form_tag items_path , method: "get" do %>
 		<br><p class="filter-text"> Filter </p><br>
 		<p class="category-group">Category:<br>
-		<%= select_tag( :category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update index", data: {controller: "subcategories"}} ) %></p>
-		<p><div class="auto-update index" id="category_subcategories_list"></div></p>
-		<p><div class="auto-update index" id="subcategory_brands_list"></div></p>
+		<%= select_tag( :category , options_from_collection_for_select( Category.all , :id , :name, @category_id) , { prompt: "Select Category", class: "auto-update index", data: {controller: "subcategories"}} ) %>
+		<p>
+			<div class="auto-update index" id="category_subcategories_list">
+			<% unless @category_id.nil? || @category_id == "" %>
+      			<label class="auto-update mb-2 mt-3">Subcategories:<br></label>
+      			<%= select_tag(:subcategory , options_from_collection_for_select( @subcategories.all , :id , :name, @subcategory_id) , { prompt: "Select Subcategory" , class: "auto-update index", data: {controller: "brands"}} ) %>
+			<% end %>
+			</div>
+		</p>
+		<p>
+			<div class="auto-update index" id="subcategory_brands_list">
+				<% unless @subcategory_id.nil? || @subcategory_id == "" %>
+	        <label class="auto-update mb-2 mt-3">Brands<br></label>
+	        <%= select_tag(:brand , options_from_collection_for_select( @brands.all , :id , :name, @brand_id) , { prompt: "Select Brand" , class: "auto-update index"} ) %>
+				<% end %>
+			</div>
+		</p>
+		</p>
 		<%= submit_tag("GO", class: "item-go-btn") %>
 		<% end %><br>
 		<%= form_tag items_path , method: "get" do %>
 		<p class="category-group">Brand:<br>
-		<%= select_tag( :brand1 , options_from_collection_for_select( Brand.all , :id , :name) , { prompt: "Select Brand", class: "auto-update index"} ) %></p>
+		<%= select_tag( :brand1 , options_from_collection_for_select( Brand.all , :id , :name, @brand_id_alt) , { prompt: "Select Brand", class: "auto-update index"} ) %></p>
 		<%= submit_tag("GO", class: "item-go-btn") %>
 		<% end %>
 	</div>
