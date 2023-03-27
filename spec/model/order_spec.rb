@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  describe "validations" do
+  describe 'validations' do
     let(:order) { build(:order) }
 
     it 'is not valid without a title' do
@@ -23,6 +25,5 @@ RSpec.describe Order, type: :model do
       order.phone = nil
       expect(order).to_not be_valid
     end
-
   end
 end
