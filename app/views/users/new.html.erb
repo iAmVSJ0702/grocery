@@ -1,52 +1,52 @@
-<h3 class="text-center"><%= admin? ? "Register a new user" : "SignUp" %></h3>
+<h3 class="text-center"><%= admin? ? "Register a new user" : "SignUp" %></h3><br>
 
 <div class="create-user">
 	<%= form_for @user do |f| %>
 
-		<div class="form-group">
+		<div class="form-group is-required">
 			<%= f.label :name, class: "form-group-element" %>
 			<div class="col-sm-8">
-				<%= f.text_field :name, class: "form-group-control" %>
+				<%= f.text_field :name, class: "form-group-control", :required => true %>
 				 <p class='error'><%= show_errors(@user, :name) %></p>
 			</div>
 		</div>
-		<div class="form-group">
-			<%= f.label :email , class: "form-group-element"  %>
+		<div class="form-group is-required">
+			<%= f.label :email , class: "form-group-element is-required"  %>
 			<div class="col-sm-8">
-				<%= f.text_field :email , class: "form-group-control"%>
+				<%= f.text_field :email , class: "form-group-control", :required => true%>
 				 <p class='error'><%= show_errors(@user, :email) %></p>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group is-required">
 			<%= f.label :phone , class: "form-group-element" %>
 			<div class="col-sm-8">
-				<%= f.text_field :phone , class: "form-group-control" %>
+				<%= f.text_field :phone , class: "form-group-control", :required => true %>
 				 <p class='error'><%= show_errors(@user, :phone) %></p>
 			</div>
 		</div>
 		<div class="form-group">
 			<%= f.label :address , class: "form-group-element" %>
 			<div class="col-sm-8" >
-				<%= f.text_area :address , class: "form-group-control" %>
+				<%= f.text_area :address , class: "form-group-control"%>
 				 <p class='error'><%= show_errors(@user, :address) %></p>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group is-required">
 			<%= f.label :password , class: "form-group-element" %>
 			<div class="col-sm-8">
-				<%= f.password_field :password , class: "form-group-control" %>
+				<%= f.password_field :password , class: "form-group-control", :required => true %>
 				 <p class='error'><%= show_errors(@user, :password) %></p>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group is-required">
 			<%= f.label :password_confirmation , class: "form-group-element" %>
 			<div class="col-sm-8">
-				<%= f.password_field :password_confirmation , class: "form-group-control" %>
+				<%= f.password_field :password_confirmation , class: "form-group-control", :required => true %>
 				 <p class='error'><%= show_errors(@user, :password_confirmation) %></p>
 			</div>
 		</div>
 		<div class="actions form-group row">
-			<div class="col-sm-5 col-sm-offset-5">
+			<div class="col-sm-5 col-sm-offset-5"><br>
 				<%= f.submit admin? ? "Create User" : "SignUp" ,class: "btn btn-success" %>
 			</div>
 		</div>

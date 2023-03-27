@@ -1,17 +1,17 @@
 <h1 class="text-center"> Change Your Password</h3><br>
 
 <%= form_for(current_user , url: admin_path(current_user[:id]) , method: "put" ) do |f| %>
-	<div class="field form-group row">
+	<div class="field form-group row is-required">
 		<%= label_tag :old_password , nil , class: "col-sm-2 col-sm-label" %>
 			<div class="col-sm-4">
-				<%= password_field_tag :oldpassword , nil ,class: "form-control" %>
+				<%= password_field_tag :oldpassword , nil ,class: "form-control", :required => true %>
 			</div>
 	</div>
 
-	<div class="field form-group row">
+	<div class="field form-group row is-required">
 		<%= f.label :New_password , class: "col-sm-2 col-sm-label" %>
 			<div class="col-sm-4">
-				<%= f.password_field :password , class: "form-control" %>
+				<%= f.password_field :password , class: "form-control", :required => true %>
 			</div>
 	</div><br>
 	

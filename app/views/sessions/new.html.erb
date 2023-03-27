@@ -1,15 +1,15 @@
 <div class="center">
-	<h3 class="text-center">SignIn</h3>
+	<h3 class="text-center">SignIn</h3><br>
 	<div class="create-user">
 		<%= form_for(:user , url: sessions_path) do |f| %>
-			<div class="field form-group row">
-				<%= f.label :email , class: "col-sm-2 col-sm-offset-1  col-form-label"  %>
+			<div class="field form-group row is-required">
+				<%= f.label :email , class: "form-group-element"  %>
 				<div class="col-sm-8">
 					<%= f.text_field :email , class: "form-control"%>
 				</div>
 			</div>
-			<div class="field form-group row">
-					<%= f.label :password , class: "col-sm-2 col-sm-offset-1  col-form-label" %>
+			<div class="field form-group row is-required">
+					<%= f.label :password , class: "form-group-element" %>
 					<div class="col-sm-8">
 						<%= f.password_field :password , class: "form-control" %>
 			</div>
