@@ -18,7 +18,7 @@
 
     <li class="grid-item">
       <h2><%= link_to "Show All Items" , items_path , class: "nav-link"  %></h2><br>
-      <h3 class="dropdown-toggle">Add New Brand</h2>
+      <h3 class="dropdown-toggle">Add New Item</h2>
       <%= form_tag new_item_path , method: "get" do %>
     		<p class="category-group">Category:<br>
     		<%= select_tag( :category , options_from_collection_for_select( Category.all , :id , :name) , { prompt: "Select Category", class: "auto-update index", data: {controller: "subcategories"}} ) %></p>
