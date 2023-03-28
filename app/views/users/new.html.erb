@@ -3,22 +3,22 @@
 <div class="create-user">
 	<%= form_for @user do |f| %>
 
-		<div class="form-group is-required">
-			<%= f.label :name, class: "form-group-element" %>
+		<div class="form-group">
+			<%= f.label :name, class: "form-group-element imp" %>
 			<div class="col-sm-8">
 				<%= f.text_field :name, class: "form-group-control", :required => true %>
 				 <p class='error'><%= show_errors(@user, :name) %></p>
 			</div>
 		</div>
-		<div class="form-group is-required">
-			<%= f.label :email , class: "form-group-element is-required"  %>
+		<div class="form-group">
+			<%= f.label :email , class: "form-group-element imp"  %>
 			<div class="col-sm-8">
 				<%= f.text_field :email , class: "form-group-control", :required => true%>
 				 <p class='error'><%= show_errors(@user, :email) %></p>
 			</div>
 		</div>
-		<div class="form-group is-required">
-			<%= f.label :phone , class: "form-group-element" %>
+		<div class="form-group">
+			<%= f.label :phone , class: "form-group-element imp imp" %>
 			<div class="col-sm-8">
 				<%= f.text_field :phone , class: "form-group-control", :required => true %>
 				 <p class='error'><%= show_errors(@user, :phone) %></p>
@@ -31,15 +31,15 @@
 				 <p class='error'><%= show_errors(@user, :address) %></p>
 			</div>
 		</div>
-		<div class="form-group is-required">
-			<%= f.label :password , class: "form-group-element" %>
+		<div class="form-group">
+			<%= f.label :password , class: "form-group-element imp" %>
 			<div class="col-sm-8">
 				<%= f.password_field :password , class: "form-group-control", :required => true %>
 				 <p class='error'><%= show_errors(@user, :password) %></p>
 			</div>
 		</div>
-		<div class="form-group is-required">
-			<%= f.label :password_confirmation , class: "form-group-element" %>
+		<div class="form-group">
+			<%= f.label :password_confirmation , class: "form-group-element imp" %>
 			<div class="col-sm-8">
 				<%= f.password_field :password_confirmation , class: "form-group-control", :required => true %>
 				 <p class='error'><%= show_errors(@user, :password_confirmation) %></p>

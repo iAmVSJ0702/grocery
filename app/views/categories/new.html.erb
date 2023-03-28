@@ -1,13 +1,15 @@
 <div class="center"><br>
-  <h3 class="text-center">Add New Category</h3>
+  <h3 class="text-center">Add New Category</h3><br>
   <%= form_for(@new_category) do |f| %>
-  	<div class= "field is-required"><br>
-      <%= f.label :name %><br>
+  	<div class= "field">
+      <div class="field form-group row">
+				<%= f.label :name , class: "form-group-element imp"  %>
+			</div>
   		<%= f.text_field :name, :required => true %>
       <div class="notice"><%= notice %></div><br>
   		<%= f.submit :Create , class: "btn btn-success"%>
   	</div>
-  <% end %>
+  <% end %><br>
   <table class="card">
     <thead>
       <tr>

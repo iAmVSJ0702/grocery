@@ -3,8 +3,10 @@
   <%= form_for(@subcategory) do |f| %>
   	<div class= "field" >
       <%= f.hidden_field :category ,value: @category[:id] %>
-  		<label>Name:</label><br>
-  		<%= f.text_field :name %>
+      <div class="field form-group row">
+				<%= f.label :name , class: "form-group-element imp"  %>
+			</div>
+  		<%= f.text_field :name, :required => true %>
       <div class="notice"><%= notice %></div><br>
   		<%= f.submit :Create , class: "btn btn-success"  %><br><br><br>
   	</div>

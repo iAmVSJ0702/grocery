@@ -1,18 +1,18 @@
 <%= notice %>
 <%= form_tag items_path , { method: "post", id: "buga" , multipart: true }  do %>
-	<div class="field form-group row"><br>
-		<h3 class="text-center">Add New Item </h3>
+		<br><h3 class="text-center">Add New Item </h3><br>
     <%= hidden_field_tag(:brand, value = @brand[:id]) %>
-		<%= label_tag :title , nil ,class: "col-sm-2 col-form-label"  %>
+		<div class="field form-group row">
+		<%= label_tag :title , nil ,class: "col-sm-2 col-form-label imp"  %>
 		<div class="col-sm-6">
-			<%= text_field_tag :title, @new_item.title%>
+			<%= text_field_tag :title, @new_item.title, :required => true %>
 			<p class='error'><%= show_errors(@new_item, :title) %></p>
 		</div>
 	</div> 
 	<div class="field form-group row">
-		<%= label_tag :price , nil , class: "col-sm-2 col-form-label" %>
+		<%= label_tag :price , nil , class: "col-sm-2 col-form-label imp" %>
 		<div class="col-sm-6">
-			<%= text_field_tag :price, @new_item.price%>
+			<%= number_field_tag :price, @new_item.price, min: 1, :required => true%>
 			<p class='error'><%= show_errors(@new_item, :price) %></p>
 		</div> 
 	</div> 

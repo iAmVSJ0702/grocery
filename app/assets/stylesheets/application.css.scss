@@ -426,59 +426,13 @@ a:hover, .menu li a.active {
   color: #000;
 }
 
-.is-required > label:first-child:after {
+label:first-child:after.imp {
   color: red;
   content: '*';
   margin-left: 2px;
+  font-size: large;
 }
 
-@media (max-width: 1000px) {
-  .nav-toggle-lable {
-      display: block;
-  }
-
-  .update-body{
-    grid-template-columns: auto auto;
-  }
-
-  .menu {
-      display: none;
-  }
-  .nav-toggle:checked ~ .menu {
-      display:block;
-      position:fixed;
-      top: 50px;
-      left: -10px;
-      width:100%;
-      background-color:#333333;
-      text-align: center;
-  }
-  .menu li {
-      margin: 40px 0;
-  }
-}
-
-
-@media (max-width: 1000px) {
-  .nav-toggle-lable {
-      display: block;
-  }
-  .nav{
-    padding: 10px 0px;
-  }
-  .menu {
-      display: none;
-  }
-  .nav-toggle:checked ~ .menu {
-      display:flex;
-      position: fixed;
-      flex-direction: column;
-      margin-top: 240px;
-      width:100%;
-      background-color: #454742;
-      text-align: center;
-  }
-}
 
 @media (max-width: 700px){
   .row.grid{
