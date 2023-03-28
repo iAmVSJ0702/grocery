@@ -1,23 +1,23 @@
 <div class="center">
 <h2 class="text-center">My orders</h2><br>
 <% if @orders.count > 0 %>
-<% @orders.each do |order| %>
-  <% if @user.email == order.email %>
-    <%= link_to order_path(order.id) do%>
-      <div class="order-container-outer">
-        <% order.ordered_items.each do |item| %>
-          <div class="order-container-inner">
-            <div class="order-image-container"><%= image_tag item.item.avatar, class: "order-image"%></div>
-            <span class="order-item"> <%= item.item.title%></span>
-            <span class="order-item"> <%= item.item.price%></span>
-            <span class="order-item"> <%= item.quantity %></span>
-            Order Confirmed
-          </div>
-        <% end %>
-      </div>
+  <% @orders.each do |order| %>
+    <% if @user.email == order.email %>
+      <%= link_to order_path(order.id) do%>
+        <div class="order-container-outer">
+          <% order.ordered_items.each do |item| %>
+            <div class="order-container-inner">
+              <div class="order-image-container"><%= image_tag item.item.avatar, class: "order-image"%></div>
+              <span class="order-item"> <%= item.item.title%></span>
+              <span class="order-item"> <%= item.item.price%></span>
+              <span class="order-item"> <%= item.quantity %></span>
+              Order Confirmed
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
 <% else %>
   <br>Order Something First
 <% end %>

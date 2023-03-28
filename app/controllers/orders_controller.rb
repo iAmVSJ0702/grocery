@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   skip_before_action :ensure_admin
 
   def index
-    @orders = Order.all
+    @orders = Order.where(email: current_user.email)
     @user = current_user
   end
 

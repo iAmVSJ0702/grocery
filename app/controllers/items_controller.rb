@@ -39,9 +39,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    if params[:brand].nil? || params[:brand]==''
-      redirect_to admin_index_path, notice: 'Please enter parameters'
-    end
+    redirect_to admin_index_path, notice: 'Please enter parameters' if params[:brand].nil? || params[:brand] == ''
     @new_item = Item.new
     @brand = Brand.find_by(id: params[:brand])
   end

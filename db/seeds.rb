@@ -13,6 +13,7 @@ User.destroy_all
 Brand.destroy_all
 Subcategory.destroy_all
 Category.destroy_all
+Order.destroy_all
 
 # Loading Category data in the database.
 Category.create! [
