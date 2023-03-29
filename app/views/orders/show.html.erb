@@ -23,6 +23,5 @@
       <% end %>
   </div><br><br>
   <b><p>Total is ₹<%= @order.total %> </p></b><br>
-  <%= delete_link(order_path(@order.id), "Cancel") %>
-  <br><br><br>
+  <%= delete_link(order_path(@order.id), "Cancel") %><br><br><br>
 </div>

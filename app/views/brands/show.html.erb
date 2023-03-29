@@ -5,9 +5,7 @@
   <% if @brand.items.count > 0 %>
     <div id="subcategories">
       <table class="card">
-        <thead>
-          <tr><th>Items</th></tr>
-        </thead>
+        <thead><tr><th>Items</th></tr></thead>
         <tbody>
           <% @brand.items.each do |item|%>
             <tr><td scope="row"><%= link_to item.title, item %></td></tr>

@@ -12,11 +12,11 @@
         </tr>
       </thead>
       <tbody>
-      <tr><% @subcategories.each do |subcategory| %>
-        <td scope="row"><% subcategory.brands.each do |brand| %>
-          <%= link_to brand.name, brand %><br><br>
-        <% end %></td>
-      <% end %></tr>
+        <tr><% @subcategories.each do |subcategory| %>
+          <td scope="row"><% subcategory.brands.each do |brand| %>
+            <%= link_to brand.name, brand %><br><br>
+          <% end %></td>
+        <% end %></tr>
       </tbody>
     </table>
   </div>

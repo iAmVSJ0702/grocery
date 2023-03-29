@@ -3,16 +3,16 @@
 <%= form_for(current_user , url: admin_path(current_user[:id]) , method: "put" ) do |f| %>
 	<div class="field form-group row">
 		<%= label_tag :old_password , nil , class: "col-sm-2 col-sm-label" %>
-			<div class="col-sm-4">
-				<%= password_field_tag :oldpassword , nil ,class: "form-control", :required => true %>
-			</div>
+		<div class="col-sm-4">
+			<%= password_field_tag :oldpassword , nil ,class: "form-control", :required => true %>
+		</div>
 	</div>
 
 	<div class="field form-group row">
 		<%= f.label :New_password , class: "col-sm-2 col-sm-label" %>
-			<div class="col-sm-4">
-				<%= f.password_field :password , class: "form-control", :required => true %>
-			</div>
+		<div class="col-sm-4">
+			<%= f.password_field :password , class: "form-control", :required => true %>
+		</div>
 	</div><br>
 	
 	<div class="field form-group row">

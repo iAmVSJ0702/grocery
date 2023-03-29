@@ -1,48 +1,46 @@
 <div class="center">
   <% if @orderable_count > 0%>
-  <h3 class="text-center add-element"> Place Order <%= @catname %> </h3><br>
-  <%= form_with(model: @order, local: true) do |form| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+    <h3 class="text-center add-element"> Place Order <%= @catname %> </h3><br>
+    <%= form_with(model: @order, local: true) do |form| %>
+    <% if @order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+        <ul>
+          <% @order.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= form.hidden_field :cart_id , value: @cart[:id] %>
 
-      <ul>
-        <% @order.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= form.hidden_field :cart_id , value: @cart[:id] %>
+      <div class="field form-group row">
+        <%= form.label :name %>
+  		  <div class="col-sm-6">
+          <%= form.text_field :name , value: @user.name %>
+  		  </div> 
+  	  </div>
 
-    <div class="field form-group row">
-      <%= form.label :name %>
-		  <div class="col-sm-6">
-        <%= form.text_field :name , value: @user.name %>
-		  </div> 
-	  </div>
+      <div class="field form-group row">
+        <%= form.label :address %>
+  		  <div class="col-sm-6">
+          <%= form.text_area :address, value: @user.address %>
+  		  </div> 
+  	  </div> 
 
-    <div class="field form-group row">
-      <%= form.label :address %>
-		  <div class="col-sm-6">
-        <%= form.text_area :address, value: @user.address %>
-		  </div> 
-	  </div> 
+      <div class="field form-group row">
+  		  <div class="col-sm-6">
+          <%= form.hidden_field :email, value: @user.email%>
+  		  </div> 
+  	  </div> 
 
-    <div class="field form-group row">
-		  <div class="col-sm-6">
-        <%= form.hidden_field :email, value: @user.email%>
-		  </div> 
-	  </div> 
-
-    <div class="field form-group row">
-		  <div class="col-sm-6">
-        <%= form.hidden_field :phone, value: @user.phone%>
-		  </div> 
-	  </div><br>
-    <%= form.submit "Place Order", class: "btn btn-success" %>
-  <% end %>
-
+      <div class="field form-group row">
+  		  <div class="col-sm-6">
+          <%= form.hidden_field :phone, value: @user.phone%>
+  		  </div> 
+  	  </div><br>
+      <%= form.submit "Place Order", class: "btn btn-success" %>
+    <% end %>
   <% else %>
     <br><h3>Your Cart is Empty</h3>
   <% end %>

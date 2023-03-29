@@ -8,7 +8,6 @@ class SessionsController < ApplicationController
 
   def new
     return unless session[:user_id]
-
     redirect_to root_path
   end
 
@@ -16,7 +15,6 @@ class SessionsController < ApplicationController
     email = params[:user][:email].downcase
     my_user = User.find_by(email:)
     pass = params[:user][:password]
-
     p "test 1 #{email}"
     if session[:user_id].nil?
       if my_user&.authenticate(pass)

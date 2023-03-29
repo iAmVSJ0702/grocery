@@ -1,12 +1,12 @@
 <div class="center">
 <h2 class="text-center">Edit Category</h2><br>
-<%= form_for(@category) do |t| %>
-<div class="field from-group row">
-	<%= t.label :name , class: "col-sm-2 col-sm-label" %>
-	<div class="col-sm-6">
-		<%= t.text_field :name , class: "form-control" %>
-	</div>
-</div><br>
-<%= t.submit "Update" , class: "btn btn-success" %>
-<% end %>
+	<%= form_for(@category) do |t| %>
+		<div class="field from-group row">
+			<%= t.label :name , class: "col-sm-2 col-sm-label" %>
+			<div class="col-sm-6">
+				<%= t.text_field :name , class: "form-control" %>
+			</div>
+		</div><br>
+		<%= t.submit "Update" , class: "btn btn-success" %>
+	<% end %>
 </div>

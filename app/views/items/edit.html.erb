@@ -2,7 +2,6 @@
 	<%= notice %>
 	<h3 class="text-center"> Edit Item </h3><br>
 	<%= form_for(@my_item) do |f| %>
-
 		<div class="form-group row">
 			<%= f.label :title , class: "col-sm-1 col-sm-label" %>
 			<div class="col-sm-6">
@@ -23,6 +22,7 @@
 				<%= f.text_area :description , class: "form-control" %>
 			</div>
 		</div><br>
+
 		<div class="form-group row">
 			<%= f.label :avatar %><br>
 			<%= f.file_field :avatar %>
@@ -34,18 +34,22 @@
 				<% end %>
 			</p>
 		</div>
+
 		<div class="form-group row">
 			<%= f.label :category %><br>
 			<%= select_tag(:category , options_from_collection_for_select( Category.all , :id , :name, @my_item.getcategory.nil? ? "" : @my_item.getcategory[:id] ) , { class: "auto-update"} ) %>
 		</div>
+
 		<div class="form-group row">
 			<%= f.label :subcategory %><br>
 			<%= select_tag(:subcategory , options_from_collection_for_select(  @my_item.getsubcategory.nil? ? [] : @my_item.getcategory.subcategories.all , :id , :name, @my_item.getsubcategory.nil? ? "" : @my_item.getsubcategory[:id] ) , { class: "sub-update"} ) %>
 		</div>
+
 		<div class="form-group row">
 			<%= f.label :brand %><br>
 			<%= select_tag(:brand , options_from_collection_for_select( @my_item.getbrand.nil? ? [] :  @my_item.getsubcategory.brands.all , :id , :name, @my_item.getbrand.nil? ? "" : @my_item.getbrand[:id] ) , { class: "brand"} ) %>
 		</div><br>
+		
 		<%= f.submit class: "btn btn-success" %>
 	<% end %>
 </div><br>

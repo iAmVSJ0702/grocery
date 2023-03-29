@@ -6,7 +6,6 @@ class ApplicationRecord < ActiveRecord::Base
 
   def valid(id)
     return false if id.nil? || id == ''
-
     true
   end
 end

@@ -8,13 +8,15 @@
 					<%= f.text_field :email , class: "form-control"%>
 				</div>
 			</div>
+
 			<div class="field form-group row">
-					<%= f.label :password , class: "form-group-element imp" %>
-					<div class="col-sm-8">
-						<%= f.password_field :password , class: "form-control" %>
-			</div>
+				<%= f.label :password , class: "form-group-element imp" %>
+				<div class="col-sm-8">
+					<%= f.password_field :password , class: "form-control" %>
+				</div>
 			</div>
 			<div class="notice"><%= notice %></div><br><br>
+			
 			<div class="actions form-group row">
 				<div class="col-sm-5 col-sm-offset-5">
 					<%= f.submit "SignIn" ,class: "btn btn-success" %>
@@ -22,6 +24,5 @@
 			</div>
 		<% end %>
 	</div><br><br><br>
-	
 	<h4>[Try email: "admin@admin.com" password: "admin"]</h4>
 </div>
