@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :categories, only: %i[index show edit update new create destroy]
   resources :users, only: %i[index new edit update show create destroy]
   resources :items, only: %i[index create new show edit update destroy] do
-    collection do 
+    collection do
       get :fetch_category_subcategories
       get :fetch_subcategory_brands
     end

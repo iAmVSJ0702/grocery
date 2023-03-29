@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
 
   def new
     return unless session[:user_id]
+
     redirect_to root_path
   end
 

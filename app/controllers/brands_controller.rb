@@ -42,7 +42,8 @@ class BrandsController < ApplicationController
 
   def update
     if params[:subcategory] == '' || params[:brand][:name] == ''
-      redirect_to edit_brand_path(brand.id), notice: 'Unable to update as you did not assign a subcategory or left the text field blank'
+      redirect_to edit_brand_path(brand.id),
+                  notice: 'Unable to update as you did not assign a subcategory or left the text field blank'
     else
       @brand.update(name: params[:brand][:name])
       @subcategory.brands << @brand
