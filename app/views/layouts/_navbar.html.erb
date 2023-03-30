@@ -15,7 +15,7 @@
           <%= link_to 'My Cart', cart_path, class: 'nav-link nav-item' %>
           <%= link_to 'My orders', orders_path, class: 'nav-link nav-item' %>
           <%= link_to 'Admin', admin_index_path, class: 'nav-link nav-item' if admin? %>
-          <%= link_to current_user.name, current_user, class: 'nav-link nav-item' unless admin? %>
+          <%= link_to current_user.name.split.first, current_user, class: 'nav-link nav-item' unless admin? %>
           <%= link_to 'SignOut', signout_path, class: 'nav-link nav-item' %>
         <% else %>
           <%= link_to 'SignIn', signin_path, class: 'nav-link nav-item' %>
