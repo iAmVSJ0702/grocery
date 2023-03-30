@@ -143,7 +143,7 @@ Category.fifth.subcategories.first.brands.first.items.create! [{	title: 'Good Da
                                                                  description: 'Good Day cookies.' }]
 Item.last.avatar.attach(io: File.open("#{Rails.root}/app/assets/images/good_day.png"), filename: 'good_day.png')
 
-User.create! [{ name: 'admin', email: 'admin@admin.com', phone: 8_999_999_997, address: 'admin', password: 'admin',
+User.create! [{ name: 'admin', email: 'admin@admin.com', phone: 8999999997, address: 'admin', password: 'admin',
                 account_type: 'admin' }]
-User.create! [{ name: 'Vaibhav', email: 'vsj0702@gmail.com', phone: 9_129_422_222, address: 'Varanasi',
+User.create! [{ name: 'Vaibhav', email: 'vsj0702@gmail.com', phone: 9129422222, address: 'Varanasi',
                 password: 'password', account_type: 'normal' }]
